@@ -1,0 +1,12 @@
+Finished: 1. Your portfolio should have a "Welcome" section with an id of welcome-section.
+Finished: 2. Your #welcome-section element should contain an h1 element.
+Finished: 3. You should not have any empty h1 elements within #welcome-section element.
+Finished: 4. You should have a "Projects" section with an id of projects.
+Finished: 5. Your portfolio should contain at least one element with a class of project-tile.
+Finished: 6. Your #projects element should contain at least one a element.
+Finished: 7. Your portfolio should have a navbar with an id of navbar.
+Finished: 8. Your #navbar element should contain at least one a element whose href attribute starts with #.
+Finished: 9. Your portfolio should have an a element with an id of profile-link.
+Finished: 10. Your #profile-link element should have a target attribute of _blank.
+Finished: 11. Your portfolio should use at least one media query.
+Finished: 12. Your #navbar element should always be at the top of the viewport.
