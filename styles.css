@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(32, 32, 32);
@@ -44,16 +45,16 @@ a:visited {
     }
     .welcome-img:nth-of-type(1) {
         position: relative;
-        z-index: -1;
+        z-index: 1;
     }
     .welcome-img:nth-of-type(2) {
         margin: 0px -6.5vw;
         position: relative;
-        z-index: 1;
+        z-index: 2;
     }
     .welcome-img:nth-of-type(3) {
         position: relative;
-        z-index: -1;
+        z-index: 1;
     }
     #img-section {
         text-align: center;
@@ -94,23 +95,27 @@ a:visited {
     padding: 10px 40px;
 }
 .project-tile {
-    /* width: 250px; */
     height: 370px;
     text-align: center;
     margin: 3px 0px;
     transition: transform 0.5s, background-color 0.5s, border-radius 0.5s;
     border: 2px solid rgb(55, 55, 55);
     border-radius: 10px;
+    perspective: 1000px;
+    transform: scale(1.0) rotate(0deg);
 }
-.project-tile:hover {
+.project-tile:hover {    
+    transition: transform 0s, background-color 0.5s, border-radius 0.5s;
     transform: scale(1.1);
     background-color: rgb(55, 55, 55);
     border-radius: 20px;
+    animation: wiggle 0.5s;
 }
 .project-tile:active {
     transform: scale(0.95);
     background-color: rgb(55, 55, 55);
     border-radius: 20px;
+    transition: transform 0.5s;
 }
 .project-tile h3 {
     margin-top: -10px;
@@ -131,4 +136,19 @@ a:visited {
     display: flex;
     flex-direction: row;
     position: fixed;
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+    33% {
+        transform: scale(1.03333333) rotate(2deg);
+    }
+    66% {
+        transform: scale(1.06666667) rotate(0deg);
+    }
+    100% {
+        transform: scale(1.1);
+    }
 }
