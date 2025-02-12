@@ -105,17 +105,14 @@ a:visited {
     transform: scale(1.0) rotate(0deg);
 }
 .project-tile:hover {    
-    transition: transform 0s, background-color 0.5s, border-radius 0.5s;
     transform: scale(1.1);
     background-color: rgb(55, 55, 55);
     border-radius: 20px;
-    animation: wiggle 0.5s;
 }
 .project-tile:active {
     transform: scale(0.95);
     background-color: rgb(55, 55, 55);
     border-radius: 20px;
-    transition: transform 0.5s;
 }
 .project-tile h3 {
     margin-top: -10px;
@@ -136,19 +133,4 @@ a:visited {
     display: flex;
     flex-direction: row;
     position: fixed;
-}
-
-@keyframes wiggle {
-    0% {
-        transform: rotate(0deg);
-    }
-    33% {
-        transform: scale(1.03333333) rotate(2deg);
-    }
-    66% {
-        transform: scale(1.06666667) rotate(0deg);
-    }
-    100% {
-        transform: scale(1.1);
-    }
 }
