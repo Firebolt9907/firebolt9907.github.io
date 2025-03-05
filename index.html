@@ -7,10 +7,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
-
         <body>
             <header>
-                <img src="assets/signature.png" alt="My Signature">
+                <img
+                    src="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/signature.png?raw=true"
+                    alt="My Signature">
                 <nav id="navbar">
                     <a class="nav-link" href="#projects">
                         <div class="nav-button">Projects</div>
@@ -24,30 +25,69 @@
                 <img class="welcome-img"
                     src="https://avatars.githubusercontent.com/u/83421723?v=4"
                     alt="My Github Profile Picture">
-                <img class="welcome-img" src="assets/professionalpfp.jpg"
+                <img class="welcome-img"
+                    src="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/professionalpfp.jpg?raw=true"
                     alt="My Professional Headshot">
-                <img class="welcome-img" src="assets/goofypfp.jpg"
+                <img class="welcome-img"
+                    src="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/goofypfp.jpg?raw=true"
                     alt="My Social Media Profile Picture">
             </section>
             <section id="welcome-section">
                 <h1>Rishu Sharma</h1>
                 <h2>Aspiring Software Developer</p>
             </section>
+            <section id="dev-time">
+                <h1>Stats From Last Week</h1>
+                <grid id="row">
+                    <div id="graph">
+                        <div class="graph-bar" id="6-days-ago"
+                            data-time="0"></div>
+                        <div class="graph-bar" id="5-days-ago"
+                            data-time="0"></div>
+                        <div class="graph-bar" id="4-days-ago"
+                            data-time="0"></div>
+                        <div class="graph-bar" id="3-days-ago"
+                            data-time="0"></div>
+                        <div class="graph-bar" id="2-days-ago"
+                            data-time="0"></div>
+                        <div class="graph-bar" id="1-days-ago"
+                            data-time="0"></div>
+                        <div class="graph-bar" id="0-days-ago"
+                            data-time="0"></div>
+                    </div>
+                    <div id="editor-graph" class="graph">
+                        <div id="inner-editor-graph" class="inner-graph"></div>
+                        <div id="editor-names" class="names"></div>
+                    </div>
+                    <div id="os-graph" class="graph">
+                        <div id="inner-os-graph" class="inner-graph"></div>
+                        <div id="os-names" class="names"></div>
+                    </div>
+                    <div id="lang-graph" class="graph">
+                        <div id="inner-lang-graph" class="inner-graph"></div>
+                        <div id="lang-names" class="names"></div>
+                    </div>
+                </grid>
+                <h2 id="dev-time-last-week">Time spent programming last week:
+                </h2>
+            </section>
             <section id="projects">
                 <h1>Projects</h1>
                 <grid>
-                    <a target="_blank"
-                        href="https://github.com/Firebolt9907/weatherML">
-                        <div class="project-tile">
-                            <img
-                                src="https://static-00.iconduck.com/assets.00/pytorch-icon-1694x2048-jgwjy3ne.png"
-                                alt="Pytorch Logo">
-                            <h2>WeatherML</h2>
-                            <h3>2024 - Python/Pytorch</h3>
-                            <p>Pytorch ML model created to predict the weather
-                                in Clive, IA</p>
-                        </div>
-                    </a>
+                    <!-- <a target="_blank"
+                        href="https://github.com/Firebolt9907/weatherML"> -->
+                    <div class="project-tile" data-title="WeatherML"
+                        data-year="2024" data-tech="Python/Pytorch"
+                        data-description="Pytorch ML model created to predict the weather in Clive, IA">
+                        <img
+                            src="https://static-00.iconduck.com/assets.00/pytorch-icon-1694x2048-jgwjy3ne.png"
+                            alt="Pytorch Logo">
+                        <h2>WeatherML</h2>
+                        <h3>2024 - Python/Pytorch</h3>
+                        <p>Pytorch ML model created to predict the weather
+                            in Clive, IA</p>
+                    </div>
+                    <!-- </a> -->
                     <a target="_blank"
                         href="https://github.com/metallum-ultorum/IntoTheDeep">
                         <div class="project-tile">
@@ -163,7 +203,14 @@
                     <h1>Github</h1>
                 </a>
             </section>
-            <script src="scripts.js"></script>
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close">&times;</span>
+                    <h2 id="popup-title"></h2>
+                    <h3 id="popup-year-tech"></h3>
+                    <p id="popup-description"></p>
+                </div>
+            </div>
         </body>
-
+        <script src="scripts.js"></script>
     </html>
