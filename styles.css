@@ -103,6 +103,8 @@ header a img {
 #dev-time h1 {
     margin-bottom: 10px;
     margin-left: 50px;
+    margin-right: 50px;
+    text-align: center;
     font-size: 50px;
 }
 #dev-time h2 {
@@ -111,24 +113,39 @@ header a img {
 }
 #dev-time grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
     justify-items: center;
-    padding: 10px 50px;
+    padding: 10px 20px;
+}
+#dev-time > grid > div {
+    text-align: center;
+    margin-bottom: 0px;
+}
+#time-graph {
+    height: 250px;
+    align-items: end;
+}
+#time-graph h3, h4{
+    margin: 5px 0px;
 }
 #graph {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: end;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 220px;
 }
 .graph {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: start;
+    align-items: center;
     width: 205px;
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     margin-top: 5px;
 }
 .names {
@@ -136,7 +153,7 @@ header a img {
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    width: 205px;
+    width: 250px;
     margin-top: 20px;
 }
 .names div {
@@ -150,7 +167,7 @@ header a img {
 }
 .names p {
     margin: 5px 0px;
-    
+    animation: opacity 0.5s;
 }
 .inner-graph {
     display: flex;
@@ -182,20 +199,44 @@ header a img {
     width: 20px;
     background-color: white;
     border-radius: 5px;
-    transition: transform 0.5s;
+    transition: transform 0.5s, height 0.5s ease-out;
+    margin: 0px 5px;
+    margin-top: auto;
+}
+
+.bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 0px;
+    background-color: white;
+    border-radius: 5px;
+    transition: transform 0.5s, width 0.6s ease-out;
     margin: 0px 5px;
 }
+
+@keyframes moveRight {  /* move the bars to the right */
+    0% { transform: scaleX(0%); }
+    100% { transform: scaleX(100%); }
+}
+
 .graph-bar:hover {
     transform: scale(1.1);
     /* shows a popup with the amount of time */
     position: relative;
-
+    
+}
+.graph-bar::after {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.5s, transform 0.5s;
 }
 
 .graph-bar:hover::after {
     content: attr(data-time);
     position: absolute;
-    bottom: 100%;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.7);
@@ -204,14 +245,11 @@ header a img {
     border-radius: 5px;
     white-space: nowrap;
     z-index: 10;
-    opacity: 0;
-    margin-bottom: 10px;
-    transition: opacity 0.3s;
+    opacity: 1;
+    margin-top: 5px;
+    transition: opacity 0.5s, transform 0.5s;
 }
 
-.graph-bar:hover::after {
-    opacity: 1;
-}
 #projects h1 {
     margin-bottom: 10px;
     margin-left: 50px;
@@ -440,4 +478,17 @@ header a img {
 
 .popup-content h2.fade-out, .popup-content h3.fade-out, .popup-content p.fade-out {
     animation: textFadeOut 0.5s forwards;
+}
+
+@media (max-width: 600px) {
+    /* Make graphs stack vertically */
+    #dev-time #row {
+        flex-direction: column;
+        align-items: center;
+    }
+    /* Adjust each graph container width */
+    .graph, #graph, #inner-editor-graph, #inner-os-graph, #inner-lang-graph {
+        width: 90%;
+        max-width: 300px;
+    }
 }

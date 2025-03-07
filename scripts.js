@@ -94,12 +94,16 @@ function getDevTime() {
                 }
             }
             element = document.getElementById("dev-time-last-week");
-            element.textContent = "Time spent programming last week: " + Math.floor(totalTime / 3600) + " hours and " + Math.floor((totalTime % 3600) / 60) + " minutes";
+            element.textContent = "Total: " + Math.floor(totalTime / 3600) + "h " + Math.floor((totalTime % 3600) / 60) + "m";
             for (var i = 0; i < devTime.data.length; i++) {
                 var total_seconds = devTime.data[i].grand_total.total_seconds;
                 var hours = Math.floor(devTime.data[i].grand_total.total_seconds / 3600);
                 var minutes = Math.floor((devTime.data[i].grand_total.total_seconds % 3600) / 60);
-                var time = hours + 'h ' + minutes + 'm';
+                var time = "";
+                if (hours >= 1) {
+                    time = hours + "h ";
+                }
+                time = time + minutes + 'm';
 
                 var date = new Date();
                 date.setDate(date.getDate() - (6 - i));
@@ -109,9 +113,14 @@ function getDevTime() {
                 }
                 
                 element = document.getElementById((6-i).toString() + "-days-ago");
-                element.style = "height:" + total_seconds * 200 / mostTime + "px";
+                element.style.height = '0px';
                 element.setAttribute('data-time', dayOfWeek + ": " + time);
                 console.log(element);
+                // Trigger reflow to restart CSS animations
+                element.style.animation = 'none';
+                element.style.height = total_seconds * 200 / mostTime + "px";
+                void element.offsetWidth; // Trigger reflow
+                element.style.animation = '';
             }
         }
     }
@@ -134,19 +143,33 @@ function getDevEditors() {
                 var element = document.createElement('div');
                 totalPercent += editor.percent;
                 element.className = 'bar';
-                element.style.width = totalPercent * 2 + 'px';
+                element.style.width = "0px";
                 element.style.height = '10px';
                 element.style.backgroundColor = editor.color;
                 element.setAttribute('data-editor', editor.name + ': ' + Math.floor(editor.percent));
                 document.getElementById('inner-editor-graph').insertBefore(element, document.getElementById('inner-editor-graph').firstChild);
                 console.log(element);
+                // Trigger reflow to restart CSS animations
+                element.style.animation = 'none';
+                void element.offsetWidth; // Trigger reflow
+                element.style.width = totalPercent * 2.5 + 'px';
+                element.style.animation = '';
 
                 element = document.createElement('div');
                 element.innerHTML = "<div style=\"background-color: " + editor.color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
                  + "<p>" + editor.name + ": " + editor.percent + "%</p>";
+                 element.style.translate = "translateY(-30px)";
+                 element.style.opacity = "0%";
                 element.setAttribute('data-editor', editor.name + ': ' + Math.floor(editor.percent));
+                element.style.animation = 'opacity 0.5s, translate 0.5s';
                 document.getElementById('editor-names').append(element);
                 console.log(element);
+                // Trigger reflow to restart CSS animations
+                element.style.animation = 'none';
+                void element.offsetWidth; // Trigger reflow
+                element.style.opacity = "100%";
+                element.style.translate = "translateY(0px)";
+                element.style.animation = '';
             }
         }
     }
@@ -178,19 +201,26 @@ function getDevOperatingSystems() {
                 }
                 totalPercent += editor.percent;
                 element.className = 'bar';
-                element.style.width = totalPercent * 2 + 'px';
                 element.style.height = '10px';
                 element.style.backgroundColor = color;
+                element.style.width = '0px';
                 element.setAttribute('data-os', osName + ': ' + Math.floor(editor.percent));
                 document.getElementById('inner-os-graph').insertBefore(element, document.getElementById('inner-os-graph').firstChild);
+
+                // Trigger reflow to restart CSS animations
+                element.style.animation = 'none';
+                void element.offsetWidth; // Trigger reflow
+                element.style.width = totalPercent * 2.5 + 'px';
+                element.style.animation = '';
+
                 console.log(element);
 
-                element = document.createElement('div');
-                element.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
+                text = document.createElement('div');
+                text.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
                  + "<p>" + osName + ": " + editor.percent + "%</p>";
-                element.setAttribute('data-os', osName + ': ' + Math.floor(editor.percent));
-                document.getElementById('os-names').append(element);
-                console.log(element);
+                text.setAttribute('data-os', osName + ': ' + Math.floor(editor.percent));
+                document.getElementById('os-names').append(text);
+                console.log(text);
             }
         }
     }
@@ -217,12 +247,17 @@ function getDevLangs() {
                     totalPercent = (100-totalPercent).toFixed(2);
                     console.log(totalPercent);
                     element.className = 'bar';
-                    element.style.width = "200px";
+                    element.style.width = "0px";
                     element.style.height = '10px';
                     element.style.backgroundColor = color;
                     element.setAttribute('data-lang', lang + ': ' + (100 - totalPercent));
                     document.getElementById('inner-lang-graph').insertBefore(element, document.getElementById('inner-lang-graph').firstChild);
                     console.log(element);
+                    // Trigger reflow to restart CSS animations
+                    element.style.animation = 'none';
+                    void element.offsetWidth; // Trigger reflow
+                    element.style.width = "250px";
+                    element.style.animation = '';
 
                     element = document.createElement('div');
                     element.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
@@ -242,12 +277,17 @@ function getDevLangs() {
                 }
                 totalPercent += editor.percent;
                 element.className = 'bar';
-                element.style.width = totalPercent * 2 + 'px';
+                element.style.width = '0px';
                 element.style.height = '10px';
                 element.style.backgroundColor = color;
                 element.setAttribute('data-lang', lang + ': ' + Math.floor(editor.percent));
                 document.getElementById('inner-lang-graph').insertBefore(element, document.getElementById('inner-lang-graph').firstChild);
                 console.log(element);
+                // Trigger reflow to restart CSS animations
+                element.style.animation = 'none';
+                void element.offsetWidth; // Trigger reflow
+                element.style.width = totalPercent * 2.5 + 'px';
+                element.style.animation = '';
 
                 element = document.createElement('div');
                 element.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
