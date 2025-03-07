@@ -1,9 +1,10 @@
-if (visualViewport.width < 600) {
-    var scroll = document.querySelectorAll('.project-tile');
-    window.addEventListener('scroll', function() {
-        var welcomeOffset = visualViewport.height - 530;
-        var projectTileHeight = 400;
-        var scrollPos = (window.scrollY - this.visualViewport.width + welcomeOffset) / projectTileHeight;
+
+var scroll = document.querySelectorAll('.project-tile');
+window.addEventListener('scroll', function() {
+    var welcomeOffset = visualViewport.height - 800;
+    var projectTileHeight = 400;
+    var scrollPos = (window.scrollY - this.visualViewport.width + welcomeOffset) / projectTileHeight;
+    if (visualViewport.width < 600) {
         for (var i = 0; i < scroll.length; i++) {
             if(scrollPos - i < 1 && scrollPos - i > 0) {
                 scroll[i].style.transform = 'scale(1.1)';
@@ -15,62 +16,13 @@ if (visualViewport.width < 600) {
                 scroll[i].style.backgroundColor = 'rgb(32,32,32)'
             }
         }
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    var popup = document.getElementById('popup');
-    var popupContent = document.querySelector('.popup-content');
-    var popupTitle = document.getElementById('popup-title');
-    var popupYearTech = document.getElementById('popup-year-tech');
-    var popupDescription = document.getElementById('popup-description');
-    var closeBtn = document.querySelector('.close');
-
-    document.querySelectorAll('.project-tile').forEach(function(tile) {
-        tile.addEventListener('click', function(event) {
-            event.preventDefault();
-            popupTitle.textContent = tile.getAttribute('data-title');
-            popupYearTech.textContent = tile.getAttribute('data-year') + ' - ' + tile.getAttribute('data-tech');
-            popupDescription.textContent = tile.getAttribute('data-description');
-            popup.style.display = 'block';
-
-            // Trigger reflow to restart CSS animations
-            popupTitle.style.animation = 'none';
-            popupYearTech.style.animation = 'none';
-            popupDescription.style.animation = 'none';
-            void popupTitle.offsetWidth; // Trigger reflow
-            void popupYearTech.offsetWidth; // Trigger reflow
-            void popupDescription.offsetWidth; // Trigger reflow
-            popupTitle.style.animation = '';
-            popupYearTech.style.animation = '';
-            popupDescription.style.animation = '';
-        });
-    });
-
-    function closePopup() {
-        popup.classList.add('fade-out');
-        popupContent.classList.add('slide-out');
-        popupTitle.classList.add('fade-out');
-        popupYearTech.classList.add('fade-out');
-        popupDescription.classList.add('fade-out');
-
-        setTimeout(function() {
-            popup.style.display = 'none';
-            popup.classList.remove('fade-out');
-            popupContent.classList.remove('slide-out');
-            popupTitle.classList.remove('fade-out');
-            popupYearTech.classList.remove('fade-out');
-            popupDescription.classList.remove('fade-out');
-        }, 500); // Match the duration of the fade-out animation
     }
 
-    closeBtn.addEventListener('click', closePopup);
+});
 
-    window.addEventListener('click', function(event) {
-        if (event.target == popup) {
-            closePopup();
-        }
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    // Removed popup initialization and event listeners related to popup
+    // ...existing code unrelated to popup if any...
 });
 
 getDevTime();
@@ -160,7 +112,7 @@ function getDevEditors() {
                     var element = document.createElement('div');
                     element.innerHTML = "<div style=\"background-color: " + editor.color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
                      + "<p>" + editor.name + ": " + editor.percent + "%</p>";
-                    element.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+                    element.style.transition = "opacity 0.8s ease-in-out, transform 0.8s ease-in-out";
                     element.setAttribute('data-editor', editor.name + ': ' + Math.floor(editor.percent));
                     
                     var delay = index * 100; // Stagger delay in milliseconds
@@ -227,7 +179,7 @@ function getDevOperatingSystems() {
                     text.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
                      + "<p>" + osName + ": " + editor.percent + "%</p>";
                     text.setAttribute('data-os', osName + ': ' + Math.floor(editor.percent));
-                    text.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+                    text.style.transition = "opacity 0.8s ease-in-out, transform 0.8s ease-in-out";
                     var delay = index * 100; 
                     setTimeout(function(){
                         text.style.transform = "translateY(30px)";
@@ -257,7 +209,7 @@ function getDevLangs() {
             totalPercent = 0;
             // devTime.data.reverse();
             for (var i = 0; i < devTime.data.length; i++) {
-                if (totalPercent > 90) {
+                if (totalPercent > 93) {
                     var editor = devTime.data[i];
                     var element = document.createElement('div');
                     var lang = "Other";
@@ -278,12 +230,24 @@ function getDevLangs() {
                     element.style.width = "250px";
                     element.style.animation = '';
 
-                    element = document.createElement('div');
-                    element.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
-                    + "<p>" + lang + ": " + (totalPercent) + "%</p>";
-                    element.setAttribute('data-lang', lang + ': ' + Math.floor(totalPercent));
-                    document.getElementById('lang-names').append(element);
-                    console.log(element);
+                    (function(index) {
+                        var langElement = document.createElement('div');
+                        langElement.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
+                         + "<p>" + lang + ": " + totalPercent + "%</p>";
+                        langElement.setAttribute('data-lang', 'Other: ' + Math.floor(totalPercent));
+                        langElement.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+                        var delay = index * 100;
+                        setTimeout(function(){
+                            langElement.style.transform = "translateY(30px)";
+                            langElement.style.opacity = "0";
+                            document.getElementById('lang-names').append(langElement);
+                            setTimeout(function(){
+                                langElement.style.transform = "translateY(0px)";
+                                langElement.style.opacity = "1";
+                            }, 10);
+                        }, delay);
+                        console.log(langElement);
+                    })(i);
                     break;
                 }
                 var editor = devTime.data[i];

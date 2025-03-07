@@ -8,6 +8,8 @@ html {
     perspective: 1000;
     transform: translate3d(0,0,0);
     transform: translateZ(0);
+    /* added for scroll snapping */
+    scroll-snap-type: y proximity;
 }
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -38,6 +40,7 @@ header {
     z-index: 1000;
     border-bottom-right-radius: 20px;
     margin-top: 0px;
+    scroll-snap-align: start;
 }
 header a img {
     margin-left: 20px;
@@ -104,12 +107,13 @@ header a img {
 #welcome-section h2:hover {
     transform: scale(1.1);
 }
-#dev-time h1 {
+#dev-time h2 {
     margin-bottom: 10px;
     margin-left: 50px;
     margin-right: 50px;
     text-align: center;
     font-size: 50px;
+    /* added property for snapping */
 }
 #dev-time h2 {
     margin-left: 50px;
@@ -121,6 +125,7 @@ header a img {
     gap: 20px;
     justify-items: center;
     padding: 10px 20px;
+    scroll-snap-align: center;
 }
 #dev-time > grid > div {
     text-align: center;
@@ -171,7 +176,7 @@ header a img {
 }
 .names p {
     margin: 5px 0px;
-    animation: opacity 0.5s;
+    animation: opacity 0.8s;
 }
 .inner-graph {
     display: flex;
@@ -203,7 +208,7 @@ header a img {
     width: 20px;
     background-color: white;
     border-radius: 5px;
-    transition: transform 0.5s, height 0.5s ease-out;
+    transition: transform 0.8s, height 0.8s ease-out;
     margin: 0px 5px;
     margin-top: auto;
 }
@@ -216,7 +221,7 @@ header a img {
     height: 0px;
     background-color: white;
     border-radius: 5px;
-    transition: transform 0.5s, width 0.6s ease-out;
+    transition: transform 0.8s, width 0.8s ease-out;
     margin: 0px 0px;
 }
 
@@ -254,10 +259,11 @@ header a img {
     transition: opacity 0.5s, transform 0.5s;
 }
 
-#projects h1 {
+#projects h2 {
     margin-bottom: 10px;
     margin-left: 50px;
     font-size: 50px;
+    scroll-snap-align: start;
 }
 grid {
     display: grid;
@@ -282,6 +288,9 @@ grid {
     border-radius: 20px;
 }
 .project-tile h3 {
+    font-size: 27px;
+}
+.project-tile h4 {
     margin-top: -10px;
 }
 .project-tile img {
