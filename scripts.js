@@ -155,21 +155,28 @@ function getDevEditors() {
                 element.style.width = totalPercent * 2.5 + 'px';
                 element.style.animation = '';
 
-                element = document.createElement('div');
-                element.innerHTML = "<div style=\"background-color: " + editor.color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
-                 + "<p>" + editor.name + ": " + editor.percent + "%</p>";
-                 element.style.translate = "translateY(-30px)";
-                 element.style.opacity = "0%";
-                element.setAttribute('data-editor', editor.name + ': ' + Math.floor(editor.percent));
-                element.style.animation = 'opacity 0.5s, translate 0.5s';
-                document.getElementById('editor-names').append(element);
-                console.log(element);
-                // Trigger reflow to restart CSS animations
-                element.style.animation = 'none';
-                void element.offsetWidth; // Trigger reflow
-                element.style.opacity = "100%";
-                element.style.translate = "translateY(0px)";
-                element.style.animation = '';
+                (function(index) {
+                    var editor = devTime.data[i];
+                    var element = document.createElement('div');
+                    element.innerHTML = "<div style=\"background-color: " + editor.color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
+                     + "<p>" + editor.name + ": " + editor.percent + "%</p>";
+                    element.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+                    element.setAttribute('data-editor', editor.name + ': ' + Math.floor(editor.percent));
+                    
+                    var delay = index * 100; // Stagger delay in milliseconds
+
+                    setTimeout(function() {
+                        element.style.transform = "translateY(30px)";
+                        element.style.opacity = "0";
+                        document.getElementById('editor-names').append(element);
+
+                        setTimeout(function() {
+                            element.style.transform = "translateY(0px)";
+                            element.style.opacity = "1";
+                        }, 10); // Small delay to ensure transition
+                    }, delay);
+                    console.log(element);
+                })(i);
             }
         }
     }
@@ -215,12 +222,24 @@ function getDevOperatingSystems() {
 
                 console.log(element);
 
-                text = document.createElement('div');
-                text.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
-                 + "<p>" + osName + ": " + editor.percent + "%</p>";
-                text.setAttribute('data-os', osName + ': ' + Math.floor(editor.percent));
-                document.getElementById('os-names').append(text);
-                console.log(text);
+                (function(index) {
+                    var text = document.createElement('div');
+                    text.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
+                     + "<p>" + osName + ": " + editor.percent + "%</p>";
+                    text.setAttribute('data-os', osName + ': ' + Math.floor(editor.percent));
+                    text.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+                    var delay = index * 100; 
+                    setTimeout(function(){
+                        text.style.transform = "translateY(30px)";
+                        text.style.opacity = "0";
+                        document.getElementById('os-names').append(text);
+                        setTimeout(function(){
+                            text.style.transform = "translateY(0px)";
+                            text.style.opacity = "1";
+                        }, 10);
+                    }, delay);
+                    console.log(text);
+                })(i);
             }
         }
     }
@@ -289,12 +308,24 @@ function getDevLangs() {
                 element.style.width = totalPercent * 2.5 + 'px';
                 element.style.animation = '';
 
-                element = document.createElement('div');
-                element.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
-                 + "<p>" + lang + ": " + editor.percent + "%</p>";
-                element.setAttribute('data-lang', lang + ': ' + Math.floor(editor.percent));
-                document.getElementById('lang-names').append(element);
-                console.log(element);
+                (function(index) {
+                    var langElement = document.createElement('div');
+                    langElement.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
+                     + "<p>" + lang + ": " + editor.percent + "%</p>";
+                    langElement.setAttribute('data-lang', lang + ': ' + Math.floor(editor.percent));
+                    langElement.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+                    var delay = index * 100;
+                    setTimeout(function(){
+                        langElement.style.transform = "translateY(30px)";
+                        langElement.style.opacity = "0";
+                        document.getElementById('lang-names').append(langElement);
+                        setTimeout(function(){
+                            langElement.style.transform = "translateY(0px)";
+                            langElement.style.opacity = "1";
+                        }, 10);
+                    }, delay);
+                    console.log(langElement);
+                })(i);
             }
         }
     }
