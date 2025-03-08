@@ -1,19 +1,19 @@
 
-var scroll = document.querySelectorAll('.project-tile');
+var projectTiles = document.querySelectorAll('.project-tile');
 window.addEventListener('scroll', function() {
     var welcomeOffset = visualViewport.height - 800;
     var projectTileHeight = 400;
     var scrollPos = (window.scrollY - this.visualViewport.width + welcomeOffset) / projectTileHeight;
     if (visualViewport.width < 600) {
-        for (var i = 0; i < scroll.length; i++) {
+        for (var i = 0; i < projectTiles.length; i++) {
             if(scrollPos - i < 1 && scrollPos - i > 0) {
-                scroll[i].style.transform = 'scale(1.1)';
-                scroll[i].style.borderRadius = '20px';
-                scroll[i].style.backgroundColor = 'rgb(55,55,55)'
+                projectTiles[i].style.transform = 'scale(1.1)';
+                projectTiles[i].style.borderRadius = '20px';
+                projectTiles[i].style.backgroundColor = 'rgb(55,55,55)'
             } else {
-                scroll[i].style.transform = 'scale(1.0)';
-                scroll[i].style.borderRadius = '10px';
-                scroll[i].style.backgroundColor = 'rgb(32,32,32)'
+                projectTiles[i].style.transform = 'scale(1.0)';
+                projectTiles[i].style.borderRadius = '10px';
+                projectTiles[i].style.backgroundColor = 'rgb(32,32,32)'
             }
         }
     }
@@ -73,6 +73,106 @@ function getDevTime() {
                 element.style.height = total_seconds * 200 / mostTime + "px";
                 void element.offsetWidth; // Trigger reflow
                 element.style.animation = '';
+            }
+        }
+    }
+}
+getDevLangs();
+// fetches data for the second graph
+function getDevLangs() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://wakatime.com/share/@firebolt9907/933b30fe-3770-4aae-8eea-78e2f011955c.json', true);
+    xhr.send();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var devTime = JSON.parse(xhr.responseText);
+            console.log(devTime);
+            totalPercent = 0;
+            // devTime.data.reverse();
+            for (var i = 0; i < devTime.data.length; i++) {
+                if (totalPercent > 93) {
+                    var editor = devTime.data[i];
+                    var element = document.createElement('div');
+                    var lang = "Other";
+                    var color = "rgb(162, 162, 162)";
+                    console.log(totalPercent);
+                    totalPercent = (100-totalPercent).toFixed(2);
+                    console.log(totalPercent);
+                    element.className = 'bar';
+                    element.style.width = "0px";
+                    element.style.height = '10px';
+                    element.style.backgroundColor = color;
+                    element.setAttribute('data-lang', lang + ': ' + (100 - totalPercent));
+                    document.getElementById('inner-lang-graph').insertBefore(element, document.getElementById('inner-lang-graph').firstChild);
+                    console.log(element);
+                    // Trigger reflow to restart CSS animations
+                    element.style.animation = 'none';
+                    void element.offsetWidth; // Trigger reflow
+                    element.style.width = "250px";
+                    element.style.animation = '';
+
+                    (function(index) {
+                        var langElement = document.createElement('div');
+                        langElement.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
+                         + "<p>" + lang + ": " + totalPercent + "%</p>";
+                        langElement.setAttribute('data-lang', 'Other: ' + Math.floor(totalPercent));
+                        langElement.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+                        var delay = index * 100;
+                        setTimeout(function(){
+                            langElement.style.transform = "translateY(30px)";
+                            langElement.style.opacity = "0";
+                            document.getElementById('lang-names').append(langElement);
+                            setTimeout(function(){
+                                langElement.style.transform = "translateY(0px)";
+                                langElement.style.opacity = "1";
+                            }, 10);
+                        }, delay);
+                        console.log(langElement);
+                    })(i);
+                    break;
+                }
+                var editor = devTime.data[i];
+                var element = document.createElement('div');
+                var lang = editor.name;
+                var color = editor.color;
+                if (lang == 'Dart') {
+                    lang = 'Flutter';
+                    color = 'rgb(0, 161, 254)';
+                } else if (lang == 'JSON') {
+                    color = 'rgb(148, 255, 127)';
+                }
+                totalPercent += editor.percent;
+                element.className = 'bar';
+                element.style.width = '0px';
+                element.style.height = '10px';
+                element.style.backgroundColor = color;
+                element.setAttribute('data-lang', lang + ': ' + Math.floor(editor.percent));
+                document.getElementById('inner-lang-graph').insertBefore(element, document.getElementById('inner-lang-graph').firstChild);
+                console.log(element);
+                // Trigger reflow to restart CSS animations
+                element.style.animation = 'none';
+                void element.offsetWidth; // Trigger reflow
+                element.style.width = totalPercent * 2.5 + 'px';
+                element.style.animation = '';
+
+                (function(index) {
+                    var langElement = document.createElement('div');
+                    langElement.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
+                     + "<p>" + lang + ": " + editor.percent + "%</p>";
+                    langElement.setAttribute('data-lang', lang + ': ' + Math.floor(editor.percent));
+                    langElement.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+                    var delay = index * 100;
+                    setTimeout(function(){
+                        langElement.style.transform = "translateY(30px)";
+                        langElement.style.opacity = "0";
+                        document.getElementById('lang-names').append(langElement);
+                        setTimeout(function(){
+                            langElement.style.transform = "translateY(0px)";
+                            langElement.style.opacity = "1";
+                        }, 10);
+                    }, delay);
+                    console.log(langElement);
+                })(i);
             }
         }
     }
@@ -191,104 +291,6 @@ function getDevOperatingSystems() {
                         }, 10);
                     }, delay);
                     console.log(text);
-                })(i);
-            }
-        }
-    }
-}
-getDevLangs();
-// fetches data for the second graph
-function getDevLangs() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://wakatime.com/share/@firebolt9907/933b30fe-3770-4aae-8eea-78e2f011955c.json', true);
-    xhr.send();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var devTime = JSON.parse(xhr.responseText);
-            console.log(devTime);
-            totalPercent = 0;
-            // devTime.data.reverse();
-            for (var i = 0; i < devTime.data.length; i++) {
-                if (totalPercent > 93) {
-                    var editor = devTime.data[i];
-                    var element = document.createElement('div');
-                    var lang = "Other";
-                    var color = "rgb(162, 162, 162)";
-                    console.log(totalPercent);
-                    totalPercent = (100-totalPercent).toFixed(2);
-                    console.log(totalPercent);
-                    element.className = 'bar';
-                    element.style.width = "0px";
-                    element.style.height = '10px';
-                    element.style.backgroundColor = color;
-                    element.setAttribute('data-lang', lang + ': ' + (100 - totalPercent));
-                    document.getElementById('inner-lang-graph').insertBefore(element, document.getElementById('inner-lang-graph').firstChild);
-                    console.log(element);
-                    // Trigger reflow to restart CSS animations
-                    element.style.animation = 'none';
-                    void element.offsetWidth; // Trigger reflow
-                    element.style.width = "250px";
-                    element.style.animation = '';
-
-                    (function(index) {
-                        var langElement = document.createElement('div');
-                        langElement.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
-                         + "<p>" + lang + ": " + totalPercent + "%</p>";
-                        langElement.setAttribute('data-lang', 'Other: ' + Math.floor(totalPercent));
-                        langElement.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
-                        var delay = index * 100;
-                        setTimeout(function(){
-                            langElement.style.transform = "translateY(30px)";
-                            langElement.style.opacity = "0";
-                            document.getElementById('lang-names').append(langElement);
-                            setTimeout(function(){
-                                langElement.style.transform = "translateY(0px)";
-                                langElement.style.opacity = "1";
-                            }, 10);
-                        }, delay);
-                        console.log(langElement);
-                    })(i);
-                    break;
-                }
-                var editor = devTime.data[i];
-                var element = document.createElement('div');
-                var lang = editor.name;
-                var color = editor.color;
-                if (lang == 'Dart') {
-                    lang = 'Flutter';
-                    color = 'rgb(0, 161, 254)';
-                }
-                totalPercent += editor.percent;
-                element.className = 'bar';
-                element.style.width = '0px';
-                element.style.height = '10px';
-                element.style.backgroundColor = color;
-                element.setAttribute('data-lang', lang + ': ' + Math.floor(editor.percent));
-                document.getElementById('inner-lang-graph').insertBefore(element, document.getElementById('inner-lang-graph').firstChild);
-                console.log(element);
-                // Trigger reflow to restart CSS animations
-                element.style.animation = 'none';
-                void element.offsetWidth; // Trigger reflow
-                element.style.width = totalPercent * 2.5 + 'px';
-                element.style.animation = '';
-
-                (function(index) {
-                    var langElement = document.createElement('div');
-                    langElement.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
-                     + "<p>" + lang + ": " + editor.percent + "%</p>";
-                    langElement.setAttribute('data-lang', lang + ': ' + Math.floor(editor.percent));
-                    langElement.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
-                    var delay = index * 100;
-                    setTimeout(function(){
-                        langElement.style.transform = "translateY(30px)";
-                        langElement.style.opacity = "0";
-                        document.getElementById('lang-names').append(langElement);
-                        setTimeout(function(){
-                            langElement.style.transform = "translateY(0px)";
-                            langElement.style.opacity = "1";
-                        }, 10);
-                    }, delay);
-                    console.log(langElement);
                 })(i);
             }
         }
