@@ -430,11 +430,12 @@ grid {
     flex-direction: row;
     height: 200px;
     align-items: end;
-    padding: 0px 20px;
+    padding: 0px 40px;
 }
 .social-tile .social-images .social-pfp {
     transform: scale(1);
     height: 40px;
+    width: 40px;
     margin-left: -40px;
     margin-right: 10px;
     border-radius: 200px;
@@ -443,11 +444,12 @@ grid {
 .social-tile .social-images .social-logo {
     transform: scale(1);
     height: 200px;
+    width: 200px;
     margin-left: 10px;
     z-index: 1;
 }
 .social-tile .social-images img {
-    transition: height 0.7s cubic-bezier(0.32, 1.275, 0.175, 0.885), margin-left 0.5s, margin-right 0.5s, z-index 0.5s;
+    transition: height 0.7s cubic-bezier(0.32, 1.275, 0.175, 1), width 0.7s cubic-bezier(0.32, 1.275, 0.175, 1), margin-left 0.5s, margin-right 0.5s, z-index 0.5s;
 }
 
 @media (max-width:600px) {
@@ -463,13 +465,14 @@ grid {
     }
     .social-tile:hover .social-images .social-logo {
         height: 40px;
+        width: 40px;
         margin-left: 10px;
         margin-right: -40px;
-        border-radius: 200px;
         z-index: 1000;
     }
     .social-tile:hover .social-images .social-pfp {
         height: 200px;
+        width: 200px;
         margin-left: 0px;
         margin-right: 10px;
         z-index: 1;
