@@ -391,8 +391,10 @@ grid {
     }
 }
 
+
 .social-tile {
-    height: 370px;
+    height: 320px;
+    width: 1fr;
     text-align: center;
     margin: 3px 0px;
     transition: transform 0.5s, background-color 0.5s, border-radius 0.5s;
@@ -415,11 +417,37 @@ grid {
 .social-tile img {
     max-width: 200px;
     max-height: 200px;
-    margin: 0px 25px;
-    margin-top: 10px;
+    margin: 0px 0px;
+    height: 200px; 
+    margin-top: 15px; 
+    margin-bottom: -10px;
 }
 .social-tile p {
     margin: 0px 10px;
+}
+.social-tile .social-images {
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+    align-items: end;
+    padding: 0px 20px;
+}
+.social-tile .social-images .social-pfp {
+    transform: scale(1);
+    height: 40px;
+    margin-left: -40px;
+    margin-right: 10px;
+    border-radius: 200px;
+    z-index: 500;
+}
+.social-tile .social-images .social-logo {
+    transform: scale(1);
+    height: 200px;
+    margin-left: 10px;
+    z-index: 1;
+}
+.social-tile .social-images img {
+    transition: height 0.7s cubic-bezier(0.32, 1.275, 0.175, 0.885), margin-left 0.5s, margin-right 0.5s, z-index 0.5s;
 }
 
 @media (max-width:600px) {
@@ -432,5 +460,22 @@ grid {
         transform: scale(1.1);
         background-color: rgb(55, 55, 55);
         border-radius: 20px;
+    }
+    .social-tile:hover .social-images .social-logo {
+        height: 40px;
+        margin-left: 10px;
+        margin-right: -40px;
+        border-radius: 200px;
+        z-index: 1000;
+    }
+    .social-tile:hover .social-images .social-pfp {
+        height: 200px;
+        margin-left: 0px;
+        margin-right: 10px;
+        z-index: 1;
+        
+    }
+    .social-tile:hover .social-images {
+        flex-direction: row;
     }
 }
