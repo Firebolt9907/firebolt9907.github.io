@@ -431,6 +431,7 @@ grid {
     height: 200px;
     align-items: end;
     padding: 0px 45px;
+    padding-top: 10px;
 }
 .social-tile .social-images .social-pfp {
     transform: scale(1);
@@ -463,22 +464,20 @@ grid {
         background-color: rgb(55, 55, 55);
         border-radius: 20px;
     }
-    .social-tile:hover .social-images .social-logo {
-        height: 40px;
-        width: 40px;
-        margin-left: 10px;
-        margin-right: -40px;
-        z-index: 1000;
-    }
-    .social-tile:hover .social-images .social-pfp {
-        height: 200px;
-        width: 200px;
-        margin-left: 0px;
-        margin-right: 10px;
-        z-index: 1;
-        
-    }
-    .social-tile:hover .social-images {
-        flex-direction: row;
+    @media not all and (prefers-reduced-motion: reduce) {
+        .social-tile:hover .social-images .social-logo {
+            height: 40px;
+            width: 40px;
+            margin-left: 10px;
+            margin-right: -40px;
+            z-index: 1000;
+        }
+        .social-tile:hover .social-images .social-pfp {
+            height: 200px;
+            width: 200px;
+            margin-left: 0px;
+            margin-right: 10px;
+            z-index: 1;
+        }
     }
 }
