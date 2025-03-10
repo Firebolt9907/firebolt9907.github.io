@@ -1,12 +1,17 @@
 
 var projectTiles = document.querySelectorAll('.project-tile');
 window.addEventListener('scroll', function() {
-    var welcomeOffset = visualViewport.height - 800;
+    var welcomeOffset = visualViewport.height - 1750;
     var projectTileHeight = 400;
     var scrollPos = (window.scrollY - this.visualViewport.width + welcomeOffset) / projectTileHeight;
+    var debounceI = 0;
     if (visualViewport.width < 600) {
         for (var i = 0; i < projectTiles.length; i++) {
             if(scrollPos - i < 1 && scrollPos - i > 0) {
+                if(debounceI != i) {
+                    navigator.vibrate(200);
+                }
+                debounceI = i;
                 projectTiles[i].style.transform = 'scale(1.1)';
                 projectTiles[i].style.borderRadius = '20px';
                 projectTiles[i].style.backgroundColor = 'rgb(55,55,55)'

@@ -193,12 +193,14 @@ header a img {
     border-radius: 20px;
     border: 3px solid rgb(32, 32, 32);
 }
-#dev-time #row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: start;
-    margin-top: 20px;
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 40vw);
+    gap: 40px;
+    justify-items: center;
+    align-items: center;
+    align-self: center;
+    padding: 10px 40px;
 }
 .graph-bar {
     justify-content: center;
@@ -264,7 +266,7 @@ header a img {
     font-size: 50px;
     scroll-snap-align: start;
 }
-grid {
+.project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
@@ -391,10 +393,22 @@ grid {
     }
 }
 
+.social {
+    align-items: center;
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 40px;
+    justify-items: center;
+    align-items: center;
+    align-self: center;
+    padding: 10px 10px;
+}
 
 .social-tile {
-    height: 320px;
-    width: 1fr;
+    height: 200px;
     text-align: center;
     margin: 3px 0px;
     transition: transform 0.5s, background-color 0.5s, border-radius 0.5s;
@@ -402,6 +416,11 @@ grid {
     border-radius: 10px;
     perspective: 1000px;
     transform: scale(1.0) rotate(0deg);
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+    padding-right: 20px;
 }
 .social-tile:active {
     transform: scale(0.95);
@@ -410,28 +429,24 @@ grid {
 }
 .social-tile h3 {
     font-size: 27px;
+    font-size: 5vw;
 }
 .social-tile h4 {
     margin-top: -10px;
+    font-size: 3vw;
 }
 .social-tile img {
     max-width: 200px;
     max-height: 200px;
     margin: 0px 0px;
-    height: 200px; 
-    margin-top: 15px; 
-    margin-bottom: -10px;
-}
-.social-tile p {
-    margin: 0px 10px;
+    height: 150px;
 }
 .social-tile .social-images {
     display: flex;
     flex-direction: row;
-    height: 200px;
     align-items: end;
-    padding: 0px 45px;
-    padding-top: 10px;
+    justify-content: center;
+    padding-right: 20px;
 }
 .social-tile .social-images .social-pfp {
     transform: scale(1);
@@ -444,8 +459,8 @@ grid {
 }
 .social-tile .social-images .social-logo {
     transform: scale(1);
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
     margin-left: 10px;
     z-index: 1;
 }
@@ -458,12 +473,27 @@ grid {
         transition: transform 0.3s background-color 0.3s border-radius 0.3s !important;
     }
 }
-@media (min-width: 600px) {
+@media (min-width: 450px) {
+    .social-tile {
+        padding-left: 30px;
+        padding-right: 40px;
+    }
     .social-tile:hover {    
         transform: scale(1.1);
         background-color: rgb(55, 55, 55);
         border-radius: 20px;
     }
+    .social-tile h3 {
+        font-size: 35px;
+    }
+    .social-tile h4 {
+        font-size: 20px;
+    }
+    .social-grid {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+}
+@media (min-width: 600px) {
     @media not all and (prefers-reduced-motion: reduce) {
         .social-tile:hover .social-images .social-logo {
             height: 40px;
@@ -473,8 +503,8 @@ grid {
             z-index: 1000;
         }
         .social-tile:hover .social-images .social-pfp {
-            height: 200px;
-            width: 200px;
+            height: 150px;
+            width: 150px;
             margin-left: 0px;
             margin-right: 10px;
             z-index: 1;
