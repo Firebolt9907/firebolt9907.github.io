@@ -3,11 +3,15 @@ var projectTiles = document.querySelectorAll('.project-tile');
 window.addEventListener('scroll', function() {
     var welcomeOffset = visualViewport.height - 1750;
     var projectTileHeight = 400;
-    var scrollPos = (window.scrollY - this.visualViewport.width + welcomeOffset) / projectTileHeight;
+    var scrollPos = (window.scrollY - this.visualViewport.width + welcomeOffset - this.visualViewport.height / 2) / projectTileHeight;
     var debounceI = 0;
     if (visualViewport.width < 600) {
         for (var i = 0; i < projectTiles.length; i++) {
             if(scrollPos - i < 1 && scrollPos - i > 0) {
+                if(debounceI != i) {
+                    navigator.vibrate(200);
+                }
+                debounceI = i;
                 if(debounceI != i) {
                     navigator.vibrate(200);
                 }
@@ -25,10 +29,6 @@ window.addEventListener('scroll', function() {
 
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Removed popup initialization and event listeners related to popup
-    // ...existing code unrelated to popup if any...
-});
 
 getDevTime();
 // fetches data for the first graph
@@ -240,7 +240,6 @@ function getDevEditors() {
 }
 
 getDevOperatingSystems();
-// fetches data for the second graph
 function getDevOperatingSystems() {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://wakatime.com/share/@firebolt9907/45cdaf8f-c702-470c-9c29-1a10013bc33d.json', true);
@@ -250,7 +249,6 @@ function getDevOperatingSystems() {
             var devTime = JSON.parse(xhr.responseText);
             console.log(devTime);
             totalPercent = 0;
-            // devTime.data.reverse();
             for (var i = 0; i < devTime.data.length; i++) {
                 var editor = devTime.data[i];
                 var element = document.createElement('div');
@@ -271,9 +269,8 @@ function getDevOperatingSystems() {
                 element.setAttribute('data-os', osName + ': ' + Math.floor(editor.percent));
                 document.getElementById('inner-os-graph').insertBefore(element, document.getElementById('inner-os-graph').firstChild);
 
-                // Trigger reflow to restart CSS animations
                 element.style.animation = 'none';
-                void element.offsetWidth; // Trigger reflow
+                void element.offsetWidth;
                 element.style.width = totalPercent * 2.5 + 'px';
                 element.style.animation = '';
 

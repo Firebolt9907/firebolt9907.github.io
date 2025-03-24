@@ -18,6 +18,7 @@ body {
     margin: 0px;
     padding: 0px;
     padding-top: 0px;
+    scroll-behavior: smooth;
 }
 body section {
     padding-top: 40px;
@@ -40,7 +41,6 @@ header {
     z-index: 1000;
     border-bottom-right-radius: 20px;
     margin-top: 0px;
-    scroll-snap-align: start;
 }
 header a img {
     margin-left: 20px;
@@ -124,7 +124,7 @@ header a img {
     gap: 20px;
     justify-items: center;
     padding: 10px 20px;
-    scroll-snap-align: center;
+
 }
 #dev-time > grid > div {
     text-align: center;
@@ -264,7 +264,7 @@ header a img {
     margin-bottom: 10px;
     margin-left: 50px;
     font-size: 50px;
-    scroll-snap-align: start;
+
 }
 .project-grid {
     display: grid;
@@ -289,7 +289,7 @@ header a img {
     border-radius: 20px;
 }
 .project-tile h3 {
-    font-size: 27px;
+    font-size: 25px;
 }
 .project-tile h4 {
     margin-top: -10px;
@@ -335,6 +335,7 @@ header a img {
 @media (max-width:600px) {
     .project-tile {
         transition: transform 0.3s background-color 0.3s border-radius 0.3s !important;
+        scroll-snap-align: center;
     }
 }
 @media (min-width: 600px) {
