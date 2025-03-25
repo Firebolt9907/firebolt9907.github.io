@@ -145,6 +145,8 @@ function getDevLangs() {
                     color = 'rgb(0, 161, 254)';
                 } else if (lang == 'JSON') {
                     color = 'rgb(148, 255, 127)';
+                } else if (lang == "GDScript3") {
+                    lang = "Godot Script";
                 }
                 totalPercent += editor.percent;
                 element.className = 'bar';
