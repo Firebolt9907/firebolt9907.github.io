@@ -268,13 +268,17 @@ header a img {
 }
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, 100vw);
+    gap: 0px;
     justify-items: center;
-    padding: 10px 40px;
+    padding: 0px 40px;
 }
 .project-tile {
-    height: 370px;
+
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    left: 0px;
     text-align: center;
     margin: 3px 0px;
     transition: transform 0.5s, background-color 0.5s, border-radius 0.5s;

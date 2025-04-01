@@ -2,33 +2,32 @@
 var projectTiles = document.querySelectorAll('.project-tile');
 var totalTime = 0;
 window.addEventListener('scroll', function() {
-    var welcomeOffset = visualViewport.height - 1350;
-    var projectTileHeight = 400;
-    var scrollPos = (window.scrollY - this.visualViewport.width + welcomeOffset - this.visualViewport.height / 2) / projectTileHeight;
+    var welcomeOffset = document.getElementById('projects').offsetTop;
+    console.log(welcomeOffset);
+    console.log(this.window.scrollY);
+    var projectTileHeight = this.visualViewport.height;
+    var scrollPos = (window.scrollY - this.visualViewport.width + welcomeOffset - this.visualViewport.height) / projectTileHeight;
     var debounceI = 0;
-    if (visualViewport.width < 600) {
-        for (var i = 0; i < projectTiles.length; i++) {
-            if(scrollPos - i < 1 && scrollPos - i > 0) {
-                if(debounceI != i) {
-                    navigator.vibrate(200);
-                }
-                debounceI = i;
-                if(debounceI != i) {
-                    navigator.vibrate(200);
-                }
-                debounceI = i;
-                projectTiles[i].style.transform = 'scale(1.1)';
-                projectTiles[i].style.borderRadius = '20px';
-                projectTiles[i].style.backgroundColor = 'rgb(55,55,55)'
-            } else {
-                projectTiles[i].style.transform = 'scale(1.0)';
-                projectTiles[i].style.borderRadius = '10px';
-                projectTiles[i].style.backgroundColor = 'rgb(32,32,32)'
+    this.document.getElementById('projects').style.marginBottom = projectTileHeight * projectTiles.length + 'px';
+    console.log(scrollPos);
+    for (var i = 0; i < projectTiles.length; i++) {
+        if(scrollPos - i < 1 && scrollPos - i > 0) {
+            if(debounceI != i) {
+                navigator.vibrate(200);
             }
+            debounceI = i;
+            if(debounceI != i) {
+                navigator.vibrate(200);
+            }
+            debounceI = i;
+            projectTiles[i].style.opacity = Math.min(scrollPos - i, 1);
+            projectTiles[i].style.transform = 'scale(' + Math.min(scrollPos - i, 1) + ')';
+            } else {
+                projectTiles[i].style.opacity = 0;
         }
     }
-
 });
+
 
 
 getDevTime();
