@@ -1,7 +1,8 @@
 
 var projectTiles = document.querySelectorAll('.project-tile');
+var totalTime = 0;
 window.addEventListener('scroll', function() {
-    var welcomeOffset = visualViewport.height - 1750;
+    var welcomeOffset = visualViewport.height - 1350;
     var projectTileHeight = 400;
     var scrollPos = (window.scrollY - this.visualViewport.width + welcomeOffset - this.visualViewport.height / 2) / projectTileHeight;
     var debounceI = 0;
@@ -54,13 +55,7 @@ function getDevTime() {
             element.textContent = "Total: " + Math.floor(totalTime / 3600) + "h " + Math.floor((totalTime % 3600) / 60) + "m";
             for (var i = 0; i < devTime.data.length; i++) {
                 var total_seconds = devTime.data[i].grand_total.total_seconds;
-                var hours = Math.floor(devTime.data[i].grand_total.total_seconds / 3600);
-                var minutes = Math.floor((devTime.data[i].grand_total.total_seconds % 3600) / 60);
-                var time = "";
-                if (hours >= 1) {
-                    time = hours + "h ";
-                }
-                time = time + minutes + 'm';
+                time = simplifyTime(total_seconds);
 
                 var date = new Date();
                 date.setDate(date.getDate() - (6 - i));
@@ -118,8 +113,9 @@ function getDevLangs() {
 
                     (function(index) {
                         var langElement = document.createElement('div');
+                        var time = simplifyTime(totalPercent * 0.01 * totalTime);
                         langElement.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
-                         + "<p>" + lang + ": " + totalPercent + "%</p>";
+                         + "<p>" + lang + ": " + time + "</p>";
                         langElement.setAttribute('data-lang', 'Other: ' + Math.floor(totalPercent));
                         langElement.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
                         var delay = index * 100;
@@ -164,8 +160,9 @@ function getDevLangs() {
 
                 (function(index) {
                     var langElement = document.createElement('div');
+                    var time = simplifyTime(editor.percent * 0.01 * totalTime);
                     langElement.innerHTML = "<div style=\"background-color: " + color + "; height: 10px; width: 10px; border-radius: 20px;\"></div>"
-                     + "<p>" + lang + ": " + editor.percent + "%</p>";
+                     + "<p>" + lang + ": " + time + "</p>";
                     langElement.setAttribute('data-lang', lang + ': ' + Math.floor(editor.percent));
                     langElement.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
                     var delay = index * 100;
@@ -299,4 +296,15 @@ function getDevOperatingSystems() {
             }
         }
     }
+}
+
+function simplifyTime (total_seconds) {
+    var hours = Math.floor(total_seconds / 3600);
+    var minutes = Math.floor((total_seconds % 3600) / 60);
+    var time = "";
+    if (hours >= 1) {
+        time = hours + "h ";
+    }
+    time = time + minutes + 'm';
+    return time;
 }
