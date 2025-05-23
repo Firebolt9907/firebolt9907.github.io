@@ -89,25 +89,39 @@ header a img {
     margin-top: 10px;
     margin-left: 10%;
     margin-right: 10%;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
     transition: transform 0.5s;
+    z-index: 2;
 }
 #welcome-section h1:hover {
     transform: scale(1.1);
 }
+#welcome-section h1:hover ~ h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    opacity: 1;
+}
 #welcome-section h2{
     font-size: 4vw;
     text-align: center;
-    margin-top: 10px;
+    margin-top: -70px;
+    margin-bottom: -80px;
     margin-left: 10%;
     margin-right: 10%;
     font-weight: 400;
-    transition: transform 0.5s;
+    opacity: 0;
+    transition: transform 0.5s ease, margin 0.5s ease, opacity 0.5s ease;
 }
-#welcome-section h2:hover {
-    transform: scale(1.1);
+@media (max-width: 800px) {
+    #welcome-section h1 {
+        transform: scale(1.1);
+    }
+    #welcome-section h2 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        opacity: 1;
+    }
 }
-
 @media (max-width: 800px) {
     .welcome-img {
         object-fit: cover;
@@ -134,37 +148,24 @@ header a img {
         width: 25vw;
         transition: transform 0.5s ease, margin 0.5s ease;
     }
-    .welcome-img:hover {
-        transform: scale(1.15);
-    }
-    .welcome-img:nth-of-type(1) {
+    .welcome-img:nth-of-type(1), .welcome-img:nth-of-type(3) {
         position: relative;
         z-index: 1;
-        margin-left: 21.5vw;
-        margin-right: -21.5vw;
+        transform: scale(0.95);
     }
     .welcome-img:nth-of-type(2) {
-        margin: 0px -6.5vw;
+        margin: 0px -27.5vw;
         position: relative;
         z-index: 2;
-    }
-    .welcome-img:nth-of-type(3) {
-        position: relative;
-        z-index: 1;
-        margin-left: -21.5vw;
-        margin-right: 21.5vw;
     }
     #img-section {
         text-align: center;
         margin: auto;
         padding-top: 80px;
     }
-    #img-section:hover .welcome-img {
-        margin-left: -50px;
-        margin-right: -50px;
-    }
     .welcome-img:nth-of-type(2):hover {
-        margin: 0px 4vw;
+        margin: 0px -5.5vw;
+        transform: scale(1.15);
     }
 }
 #dev-time h2 {
