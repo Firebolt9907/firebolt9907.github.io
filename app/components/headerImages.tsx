@@ -1,0 +1,106 @@
+import type { FC } from 'react'
+import { motion } from 'framer-motion'
+
+interface HeaderImagesProps {
+  hovered: boolean
+  setHovered: (b: boolean) => void
+}
+
+const HeaderImages: FC<HeaderImagesProps> = ({ hovered, setHovered }) => {
+  return (
+    <section
+      id='img-section'
+      className='pt-24 text-center flex justify-center'
+      style={{ margin: '7vw 0vw', marginTop: 'calc(5vw + 20px)' }}
+    >
+      <motion.div
+        initial={{
+          opacity: 0,
+          scale: 0.8,
+          marginRight: '0vw',
+          marginLeft: '-40vw'
+        }}
+        animate={{
+          opacity: hovered ? 1 : 0,
+          scale: hovered ? 1 : 0.8,
+          marginRight: '0vw'
+        }}
+        transition={{ duration: 0.8, type: 'spring', bounce: 0.4 }}
+        className='w-1/4 h-25vw rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300'
+      >
+        <img
+          className='h-full w-full object-cover rounded-full'
+          src='https://avatars.githubusercontent.com/u/83421723?v=4'
+          alt='My Github Profile Picture'
+        />
+      </motion.div>
+      <motion.div
+        initial={{
+          opacity: 0.5,
+          x: 0,
+          borderRadius: '2vw',
+          height: '25vw',
+          width: '17.5vw',
+          zIndex: 10000,
+          marginLeft: '-25vw',
+          marginRight: '-25vw',
+          scale: 0.5
+        }}
+        animate={{
+          rotateZ: [360, 0],
+          borderRadius: '2vw',
+          height: '25vw',
+          width: '17.5vw',
+          scale: 1.5,
+          opacity: 1,
+          transition: {
+            type: 'spring',
+            bounce: 0.4,
+            duration: 0.6
+          },
+          marginLeft: '-18vw',
+          marginRight: '-18vw'
+        }}
+        whileHover={{
+          // rotateZ: [0, 360],
+          borderRadius: '22vw',
+          height: '25vw',
+          width: '25vw',
+          scale: 1.8,
+          transition: {
+            type: 'spring',
+            bounce: 0.6,
+            duration: 0.8,
+            ease: 'easeInOut'
+          },
+          marginLeft: '5vw',
+          marginRight: '5vw'
+        }}
+        onHoverStart={() => setHovered(true)}
+        onHoverEnd={() => setHovered(false)}
+        className='inline-block w-1/4 rounded-full overflow-hidden shadow-lg hover:shadow-4xl transition-shadow duration-300'
+      >
+        <img
+          className='centered h-full w-full object-cover'
+          //   UPLOAD IMAGE TO GITHUB AND USE RAW URL
+          src='https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/professionalpfp.jpg?raw=true'
+          alt='My Professional Headshot'
+        />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, marginRight: '-40vw' }}
+        animate={{ opacity: hovered ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        className='inline-block w-1/4 rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300'
+      >
+        <img
+          className='h-full w-full object-cover rounded-full'
+          src='https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/goofypfp.jpg?raw=true'
+          alt='My Social Media Profile Picture'
+        />
+      </motion.div>
+    </section>
+  )
+}
+
+export default HeaderImages

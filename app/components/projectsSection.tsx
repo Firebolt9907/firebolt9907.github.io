@@ -1,0 +1,94 @@
+import React from 'react';
+import ProjectTile from './projectTile';
+
+const ProjectsSection: React.FC = () => {
+    return (
+        <section id='projects' className='snap-start py-16'>
+        <h2 className='text-4xl font-semibold mb-8 text-center'>Projects</h2>
+        <div className='grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-6'>
+          <ProjectTile
+            url="https://github.com/Firebolt9907/weatherML"
+            title="WeatherML"
+            year="2024"
+            technology="Python/Pytorch"
+            description="Pytorch ML model created to predict the weather in Clive, IA"
+            imageSrc="https://static-00.iconduck.com/assets.00/pytorch-icon-1694x2048-jgwjy3ne.png"
+          />
+          <ProjectTile
+            url="https://github.com/metallum-ultorum/IntoTheDeep"
+            title="MU FTC Robot Code"
+            year="2024-25"
+            technology="Java"
+            description="Code for Metallum Ultorum Robot using Java OOP"
+            imageSrc="https://cdn.freebiesupply.com/logos/large/2x/java-logo-svg-vector.svg"
+          />
+          <ProjectTile
+            url="https://github.com/Firebolt9907/Zpp"
+            title="Zpp"
+            year="2022"
+            technology="Flutter"
+            description="First app made to solve many small problems in daily life"
+            imageSrc="https://img.icons8.com/color/512/flutter.png"
+          />
+          <ProjectTile
+            url="https://github.com/Firebolt9907/Stock-App"
+            title="Stocks"
+            year="2023"
+            technology="Flutter"
+            description="Stocks app made for clean UI and simplicity in mind"
+            imageSrc="https://img.icons8.com/color/512/flutter.png"
+          />
+          <ProjectTile
+            url="https://github.com/Firebolt9907/firebolt9907.github.io"
+            title="This Website"
+            year="2025"
+            technology="HTML/CSS/JS"
+            description="Portfolio website showcasing my projects and skills"
+            imageSrc="https://imakestuff.online/wp-content/uploads/2019/12/HTML-CSS-JS-Logo.png"
+          />
+          <ProjectTile
+            url="https://github.com/Deus-Ex-Machina-38433/DEM-RC-Master"
+            title="DEM FTC Robot Code"
+            year="2021-23"
+            technology="Java"
+            description="Code for Deus Ex Machina Robot using Java OOP"
+            imageSrc="https://cdn.freebiesupply.com/logos/large/2x/java-logo-svg-vector.svg"
+          />
+          <ProjectTile
+            url="https://github.com/Firebolt9907/ultimate-tag-flutter"
+            title="Ultimate Tag"
+            year="2022-23"
+            technology="Flutter"
+            description="Multiplayer Game with entirely custom UI for classmates"
+            imageSrc="https://img.icons8.com/color/512/flutter.png"
+          />
+          <ProjectTile
+            url="https://github.com/Firebolt9907/spotify_view"
+            title="Spotify View"
+            year="2023"
+            technology="Flutter"
+            description="App created to turn my phone into a Car Thing with lyrics"
+            imageSrc="https://img.icons8.com/color/512/flutter.png"
+          />
+          <ProjectTile
+            url="https://github.com/Firebolt9907/praaccc"
+            title="Praaccc"
+            year="2023"
+            technology="Flutter"
+            description="App created to allow people on my swim team to rate workouts"
+            imageSrc="https://img.icons8.com/color/512/flutter.png"
+          />
+          <ProjectTile
+            url="https://github.com/Firebolt9907/gradeManipulator"
+            title="Grade Manipulator"
+            year="2024"
+            technology="Flutter"
+            description="App created to calculate grades with weighted sections"
+            imageSrc="https://img.icons8.com/color/512/flutter.png"
+          />
+        </div>
+      </section>
+    );
+};
+
+export default ProjectsSection;
