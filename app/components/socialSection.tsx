@@ -2,7 +2,7 @@ import React from 'react';
 
 const SocialSection: React.FC = () => {
     return (
-        <section id='social' className='snap-start py-16'>
+        <section id='social' className='py-16'>
         <h2 className='text-4xl font-semibold mb-8 text-center'>Socials</h2>
         <div className='grid gap-8 grid-cols-1 sm:grid-cols-2 px-6'>
           <a target='_blank' href='https://github.com/Firebolt9907'>

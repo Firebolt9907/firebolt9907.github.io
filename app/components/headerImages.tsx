@@ -41,7 +41,7 @@ const HeaderImages: FC<HeaderImagesProps> = ({ hovered, setHovered }) => {
           borderRadius: '2vw',
           height: '25vw',
           width: '17.5vw',
-          zIndex: 10000,
+          zIndex: 60,
           marginLeft: '-25vw',
           marginRight: '-25vw',
           scale: 0.5

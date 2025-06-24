@@ -41,41 +41,50 @@ const GraphsSection: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [
-          dailyRes,
-          langRes,
-          editorRes,
-          osRes
-        ] = await Promise.all([
-          fetch('https://wakatime.com/share/@firebolt9907/6c2bf50d-513e-4529-84a5-36c8fdf7cb3d.json'),
-          fetch('https://wakatime.com/share/@firebolt9907/933b30fe-3770-4aae-8eea-78e2f011955c.json'),
-          fetch('https://wakatime.com/share/@firebolt9907/2ccbe765-7e3c-42c1-8a41-82f02a9835ed.json'),
-          fetch('https://wakatime.com/share/@firebolt9907/45cdaf8f-c702-470c-9c29-1a10013bc33d.json')
-        ]);
+        const [dailyRes, langRes, editorRes, osRes] = await Promise.all([
+          fetch(
+            'https://wakatime.com/share/@firebolt9907/6c2bf50d-513e-4529-84a5-36c8fdf7cb3d.json'
+          ),
+          fetch(
+            'https://wakatime.com/share/@firebolt9907/933b30fe-3770-4aae-8eea-78e2f011955c.json'
+          ),
+          fetch(
+            'https://wakatime.com/share/@firebolt9907/2ccbe765-7e3c-42c1-8a41-82f02a9835ed.json'
+          ),
+          fetch(
+            'https://wakatime.com/share/@firebolt9907/45cdaf8f-c702-470c-9c29-1a10013bc33d.json'
+          )
+        ])
 
-        const dailyData = await dailyRes.json();
-        setDailyStats(dailyData.data);
-        const total = dailyData.data.reduce((acc: number, curr: DailyData) => acc + curr.grand_total.total_seconds, 0);
-        setTotalTime(total);
+        const dailyData = await dailyRes.json()
+        setDailyStats(dailyData.data)
+        const total = dailyData.data.reduce(
+          (acc: number, curr: DailyData) =>
+            acc + curr.grand_total.total_seconds,
+          0
+        )
+        setTotalTime(total)
 
-        const langData = await langRes.json();
-        setLangStats(langData.data);
+        const langData = await langRes.json()
+        setLangStats(langData.data)
 
-        const editorData = await editorRes.json();
-        setEditorStats(editorData.data);
+        const editorData = await editorRes.json()
+        setEditorStats(editorData.data)
 
-        const osData = await osRes.json();
-        setOsStats(osData.data);
-
+        const osData = await osRes.json()
+        setOsStats(osData.data)
       } catch (error) {
-        console.error("Failed to fetch WakaTime data:", error);
+        console.error('Failed to fetch WakaTime data:', error)
       }
-    };
+    }
 
-    fetchData();
+    fetchData()
   }, [])
 
-  const mostTime = Math.max(...dailyStats.map(d => d.grand_total.total_seconds), 1)
+  const mostTime = Math.max(
+    ...dailyStats.map(d => d.grand_total.total_seconds),
+    1
+  )
 
   const renderStackedBar = (data: LangData[], type: string) => (
     <div className='bg-gray-300 dark:bg-gray-700 h-8 rounded-full flex overflow-hidden'>
@@ -94,15 +103,15 @@ const GraphsSection: React.FC = () => {
         </div>
       ))}
     </div>
-  );
-
+  )
   const renderLegend = (data: LangData[], type: string) => (
     <div className='mt-4 space-y-2'>
       {data.slice(0, 5).map(item => {
-        let name = item.name;
-        if (type === 'lang' && item.name === 'Dart') name = 'Flutter';
-        if (type === 'os') name = item.name === 'Mac' ? 'School Laptop' : 'Personal Laptop';
-        
+        let name = item.name
+        if (type === 'lang' && item.name === 'Dart') name = 'Flutter'
+        if (type === 'os')
+          name = item.name === 'Mac' ? 'School Laptop' : 'Personal Laptop'
+
         return (
           <div key={item.name} className='flex items-center text-sm'>
             <div
@@ -111,32 +120,37 @@ const GraphsSection: React.FC = () => {
             />
             <span className='truncate'>{name}</span>
             <span className='ml-auto text-gray-500 dark:text-gray-400'>
-              {type === 'lang' ? simplifyTime((item.percent / 100) * totalTime) : `${item.percent.toFixed(1)}%`}
+              {type === 'lang'
+                ? simplifyTime((item.percent / 100) * totalTime)
+                : `${item.percent.toFixed(1)}%`}
             </span>
           </div>
-        );
+        )
       })}
     </div>
-  );
-
+  )
 
   return (
     <section id='dev-time' className='snap-start py-16'>
       <h2 className='text-4xl font-semibold mb-8 text-center'>
         Stats From Last Week
       </h2>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6'>
-        {/* Time Spent */}
+      <h3 className='text-center size-2xl mb-4 text-gray-600 dark:text-gray-400'>
+        Unfortunately, I have had to stop using WakaTime, as Github Hack Club
+        uses a fork called Hackatime that does not have API access :(
+      </h3>
+      {/* <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6'>
         <div>
-          <h3 className='text-xl font-bold mb-2'>
-            Time Spent Coding
-          </h3>
+          <h3 className='text-xl font-bold mb-2'>Time Spent Coding</h3>
           <h4 className='text-lg mb-4'>Total: {simplifyTime(totalTime)}</h4>
           <div className='flex space-x-2 h-48 items-end justify-center'>
             {dailyStats.map((day, i) => {
               const date = new Date()
               date.setDate(date.getDate() - (6 - i))
-              const dayOfWeek = 6 - i === 0 ? 'Today' : date.toLocaleDateString('en-US', { weekday: 'short' })
+              const dayOfWeek =
+                6 - i === 0
+                  ? 'Today'
+                  : date.toLocaleDateString('en-US', { weekday: 'short' })
               return (
                 <div
                   key={day.range.date}
@@ -145,7 +159,11 @@ const GraphsSection: React.FC = () => {
                   <motion.div
                     className='bg-gray-300 dark:bg-gray-700 w-full rounded-md'
                     initial={{ height: '0%' }}
-                    animate={{ height: `${(day.grand_total.total_seconds / mostTime) * 100}%` }}
+                    animate={{
+                      height: `${
+                        (day.grand_total.total_seconds / mostTime) * 100
+                      }%`
+                    }}
                     transition={{ duration: 0.8, type: 'spring', bounce: 0.3 }}
                   />
                   <div className='absolute bottom-full mb-2 w-max left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity'>
@@ -157,29 +175,24 @@ const GraphsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Languages */}
         <div>
           <h3 className='text-xl font-bold mb-2'>Languages Used</h3>
           {renderStackedBar(langStats, 'lang')}
           {renderLegend(langStats, 'lang')}
         </div>
 
-        {/* Editors */}
         <div>
-          <h3 className='text-xl font-bold mb-2'>
-            Code Editors Used
-          </h3>
+          <h3 className='text-xl font-bold mb-2'>Code Editors Used</h3>
           {renderStackedBar(editorStats, 'editor')}
           {renderLegend(editorStats, 'editor')}
         </div>
 
-        {/* OS */}
         <div>
           <h3 className='text-xl font-bold mb-2'>Computers Used</h3>
           {renderStackedBar(osStats, 'os')}
           {renderLegend(osStats, 'os')}
         </div>
-      </div>
+      </div> */}
     </section>
   )
 }

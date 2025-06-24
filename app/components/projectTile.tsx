@@ -1,8 +1,9 @@
-import { motion } from 'motion/react'
-import { useState, type FC } from 'react'
+import { motion } from 'framer-motion'
+import { useState, useEffect, type FC } from 'react'
 
 interface ProjectTileProps {
-  url: string
+  githubUrl: string
+  visitUrl?: string
   title: string
   year: string
   technology: string
@@ -10,8 +11,15 @@ interface ProjectTileProps {
   imageSrc: string
 }
 
+const layoutTransition = {
+  type: 'spring',
+  stiffness: 150,
+  damping: 15
+} as const
+
 const ProjectTile: FC<ProjectTileProps> = ({
-  url,
+  githubUrl,
+  visitUrl = '',
   title,
   year,
   technology,
@@ -19,70 +27,201 @@ const ProjectTile: FC<ProjectTileProps> = ({
   imageSrc
 }) => {
   const [stateOpen, setOpen] = useState(false)
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
+
+  function handleMouseMove (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    const relativeX = e.clientX - centerX
+    const relativeY = e.clientY - centerY
+    setCursorPosition({ x: relativeX, y: relativeY })
+    console.log(
+      `Cursor Position Relative to Center: x=${relativeX}, y=${relativeY}`
+    )
+  }
+
   function handleToggle () {
     setOpen(!stateOpen)
   }
+
+  const stopPropagation = (e: React.MouseEvent) => e.stopPropagation()
+
   return stateOpen ? (
     <div
       className='overlay fixed inset-0 w-full flex items-center justify-center'
       onClick={handleToggle}
-      style={{ zIndex: 1000, backgroundColor: 'rgba(0, 0, 0, 0.8)' }}
+      style={{ zIndex: 1000 }}
     >
       <motion.div
+        className='absolute inset-0 bg-black'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.8 }}
+        transition={{ duration: 0.3 }}
+      />
+      <motion.div
         layoutId={title}
-        className='modal'
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ type: 'spring', bounce: 0.3, duration: 0.8 }}
+        transition={layoutTransition}
+        className='modal w-full max-w-2xl relative overflow-hidden'
+        onClick={stopPropagation}
+        onMouseMove={handleMouseMove}
+        style={{
+          marginTop: `calc(${-1450 + window.scrollY * 2}px - 40vw + 100vh)`,
+          borderRadius: '40px'
+        }}
       >
         <motion.div
-          className='modal-content'
-          initial={{ rotateY: 180 }}
-          animate={{ rotateY: 0 }}
-          transition={{
-            delay: 0.0,
-            type: 'spring',
-            bounce: 0.3,
-            duration: 1.2
-          }}
+          className='p-6 shadow-2xl bg-white dark:bg-gray-900 text-gray-900 dark:text-white flex flex-col md:flex-row items-center gap-6'
+          layoutId={`card-${title}`}
         >
-          <div className='p-4 rounded-lg shadow bg-white dark:bg-gray-800 text-gray-900 dark:text-white flex'>
-            <img className='mx-auto h-80 mb-4' src={imageSrc} alt={title} />
-            <div>
-              <h3 className='text-4xl font-bold mb-1'>{title}</h3>
-              <h4 className='text-2xl text-gray-600 dark:text-gray-300 mb-2 '>
-                {year} - {technology}
-              </h4>
-              <p className=''>{description}</p>
+          <motion.img
+            layoutId={`image-${title}`}
+            className='w-full h-auto max-h-80 object-contain'
+            style={{ width: '500px' }}
+            src={imageSrc}
+            alt={title}
+          />
+          <div className='text-left w-full'>
+            <motion.h3
+              layoutId={`title-${title}`}
+              className='text-3xl font-bold mb-1'
+            >
+              {title}
+            </motion.h3>
+            <motion.h4
+              layoutId={`tech-${title}`}
+              className='text-xl text-gray-600 dark:text-gray-400 mb-2'
+            >
+              {year} - {technology}
+            </motion.h4>
+            <motion.p layoutId={`desc-${title}`} className='text-base'>
+              {description}
+            </motion.p>
+            <div className='flex flex-row md:flex-row items-start md:items-center'>
+              {visitUrl != '' ? (
+                <motion.button
+                  style={{
+                    backgroundColor: 'green',
+                    borderRadius: '20px',
+                    padding: '10px 20px',
+                    marginTop: '10px',
+                    marginLeft: '0px',
+                    marginRight: '10px'
+                  }}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1, type: 'spring' }}
+                  onClick={() => window.open(visitUrl, '_blank')}
+                >
+                  Open
+                  <div
+                    className='icons8-new-tab'
+                    style={{
+                      marginLeft: '5px',
+                      marginRight: '-2px',
+                      marginBottom: '-2px'
+                    }}
+                  ></div>
+                </motion.button>
+              ) : (
+                <div></div>
+              )}
+              <motion.button
+                style={{
+                  backgroundColor: '#2b3137',
+                  borderRadius: '20px',
+                  padding: '10px 20px',
+                  marginTop: '10px',
+                  marginLeft: '0px'
+                }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                onClick={() => window.open(githubUrl, '_blank')}
+              >
+                Source Code
+                <div
+                  className='icons8-new-tab'
+                  style={{
+                    marginLeft: '5px',
+                    marginRight: '-2px',
+                    marginBottom: '-2px'
+                  }}
+                ></div>
+              </motion.button>
             </div>
           </div>
         </motion.div>
       </motion.div>
     </div>
   ) : (
-    <motion.div layoutId={title} className='card' onClick={handleToggle}>
-      <motion.button
-        initial={{ rotateY: 180 }}
-        animate={{ scale: 1.05, opacity: 1, rotateY: 0 }}
-        transition={{
-          delay: -0.2,
-          type: 'spring',
-          bounce: 0.3,
-          duration: 0.4
+    <motion.div
+      layoutId={title}
+      transition={layoutTransition}
+      className='card cursor-pointer p-2'
+      onClick={handleToggle}
+      onMouseMove={handleMouseMove}
+    >
+      <motion.div
+        whileHover={{
+          scale: 1.0,
+          rotateX: -cursorPosition.y / 7,
+          rotateY: cursorPosition.x / 10,
+          perspective: '100px'
         }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        // onTap={() => window.open(url, '_blank')}
-        className='w-full max-w-sm mx-auto text-gray-900 dark:text-white transition-transform duration-300 transform hover:scale-105'
+        whileTap={{
+          scale: 0.95,
+          rotateX: 0,
+          rotateY: 0,
+          perspective: '0px'
+        }}
+        animate={{
+          rotateX: 0,
+          rotateY: 0,
+          perspective: '0px'
+        }}
+        style={{
+          boxShadow: `${cursorPosition.x / 10}px ${
+            cursorPosition.y / 7
+          }px 20px rgba(0, 0, 0, 0.3)`
+        }}
+        onHoverEnd={() => {
+          setCursorPosition({ x: 0, y: 0 })
+        }}
+        className='w-full h-full max-w-sm mx-auto text-gray-900 dark:text-white'
       >
-        <div className='p-4 rounded-lg shadow'>
-          <img className='mx-auto h-24 mb-4' src={imageSrc} alt={title} />
-          <h4 className='text-sm text-gray-600 dark:text-gray-300 mb-2 text-center'>
+        <motion.div
+          className='p-4 rounded-lg shadow bg-gray-100 dark:bg-gray-900 h-full flex flex-col justify-start'
+          layoutId={`card-${title}`}
+          style={{
+            transformStyle: 'preserve-3d'
+          }}
+        >
+          <motion.img
+            layoutId={`image-${title}`}
+            className='mx-auto h-24 mb-4 object-contain'
+            src={imageSrc}
+            alt={title}
+          />
+          <motion.h3
+            layoutId={`title-${title}`}
+            className='text-lg font-bold text-center'
+          >
+            {title}
+          </motion.h3>
+          <motion.h4
+            layoutId={`tech-${title}`}
+            className='text-xs text-gray-500 dark:text-gray-400 mb-2 text-center'
+          >
             {year} - {technology}
-          </h4>
-          <p className='text-center'>{description}</p>
-        </div>
-      </motion.button>
+          </motion.h4>
+          <motion.p
+            layoutId={`desc-${title}`}
+            className='text-center text-sm text-gray-600 dark:text-gray-300'
+          >
+            {description}
+          </motion.p>
+        </motion.div>
+      </motion.div>
     </motion.div>
   )
 }

@@ -5,11 +5,11 @@ import { LayoutGroup } from 'framer-motion'
 const ProjectsSection: React.FC = () => {
   return (
     <LayoutGroup>
-      <section id='projects' className='snap-start py-16'>
+      <section id='projects' className='py-16'>
         <h2 className='text-4xl font-semibold mb-8 text-center'>Projects</h2>
-        <div className='grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-6'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'>
           <ProjectTile
-            url='https://github.com/Firebolt9907/weatherML'
+            githubUrl='https://github.com/Firebolt9907/weatherML'
             title='WeatherML'
             year='2024'
             technology='Python/Pytorch'
@@ -17,7 +17,7 @@ const ProjectsSection: React.FC = () => {
             imageSrc='https://static-00.iconduck.com/assets.00/pytorch-icon-1694x2048-jgwjy3ne.png'
           />
           <ProjectTile
-            url='https://github.com/metallum-ultorum/IntoTheDeep'
+            githubUrl='https://github.com/metallum-ultorum/IntoTheDeep'
             title='MU FTC Robot Code'
             year='2024-25'
             technology='Java'
@@ -25,7 +25,8 @@ const ProjectsSection: React.FC = () => {
             imageSrc='https://cdn.freebiesupply.com/logos/large/2x/java-logo-svg-vector.svg'
           />
           <ProjectTile
-            url='https://github.com/Firebolt9907/Zpp'
+            githubUrl='https://github.com/Firebolt9907/Zpp'
+            visitUrl='https://play.google.com/store/apps/details?id=com.firebolt.zpp'
             title='Zpp'
             year='2022'
             technology='Flutter'
@@ -33,7 +34,7 @@ const ProjectsSection: React.FC = () => {
             imageSrc='https://img.icons8.com/color/512/flutter.png'
           />
           <ProjectTile
-            url='https://github.com/Firebolt9907/Stock-App'
+            githubUrl='https://github.com/Firebolt9907/Stock-App'
             title='Stocks'
             year='2023'
             technology='Flutter'
@@ -41,7 +42,7 @@ const ProjectsSection: React.FC = () => {
             imageSrc='https://img.icons8.com/color/512/flutter.png'
           />
           <ProjectTile
-            url='https://github.com/Firebolt9907/firebolt9907.github.io'
+            githubUrl='https://github.com/Firebolt9907/firebolt9907.github.io'
             title='This Website'
             year='2025'
             technology='HTML/CSS/JS'
@@ -49,7 +50,7 @@ const ProjectsSection: React.FC = () => {
             imageSrc='https://imakestuff.online/wp-content/uploads/2019/12/HTML-CSS-JS-Logo.png'
           />
           <ProjectTile
-            url='https://github.com/Deus-Ex-Machina-38433/DEM-RC-Master'
+            githubUrl='https://github.com/Deus-Ex-Machina-38433/DEM-RC-Master'
             title='DEM FTC Robot Code'
             year='2021-23'
             technology='Java'
@@ -57,7 +58,7 @@ const ProjectsSection: React.FC = () => {
             imageSrc='https://cdn.freebiesupply.com/logos/large/2x/java-logo-svg-vector.svg'
           />
           <ProjectTile
-            url='https://github.com/Firebolt9907/ultimate-tag-flutter'
+            githubUrl='https://github.com/Firebolt9907/ultimate-tag-flutter'
             title='Ultimate Tag'
             year='2022-23'
             technology='Flutter'
@@ -65,7 +66,7 @@ const ProjectsSection: React.FC = () => {
             imageSrc='https://img.icons8.com/color/512/flutter.png'
           />
           <ProjectTile
-            url='https://github.com/Firebolt9907/spotify_view'
+            githubUrl='https://github.com/Firebolt9907/spotify_view'
             title='Spotify View'
             year='2023'
             technology='Flutter'
@@ -73,7 +74,7 @@ const ProjectsSection: React.FC = () => {
             imageSrc='https://img.icons8.com/color/512/flutter.png'
           />
           <ProjectTile
-            url='https://github.com/Firebolt9907/praaccc'
+            githubUrl='https://github.com/Firebolt9907/praaccc'
             title='Praaccc'
             year='2023'
             technology='Flutter'
@@ -81,7 +82,7 @@ const ProjectsSection: React.FC = () => {
             imageSrc='https://img.icons8.com/color/512/flutter.png'
           />
           <ProjectTile
-            url='https://github.com/Firebolt9907/gradeManipulator'
+            githubUrl='https://github.com/Firebolt9907/gradeManipulator'
             title='Grade Manipulator'
             year='2024'
             technology='Flutter'
@@ -95,3 +96,29 @@ const ProjectsSection: React.FC = () => {
 }
 
 export default ProjectsSection
+
+function getMobileOperatingSystem () {
+  const userAgent = navigator.userAgent || (window as any).opera
+
+  if (/android/i.test(userAgent)) {
+    return 'Android'
+  }
+
+  if (/iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream) {
+    return 'iOS'
+  }
+
+  return 'Desktop'
+}
+
+function getProperLink (android: string, ios: string, desktop: string) {
+  const os = getMobileOperatingSystem()
+
+  if (os === 'Android') {
+    return android
+  } else if (os === 'iOS') {
+    return ios
+  } else {
+    return desktop
+  }
+}
