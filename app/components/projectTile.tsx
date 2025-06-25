@@ -66,9 +66,11 @@ const ProjectTile: FC<ProjectTileProps> = ({
         className='modal w-full max-w-2xl relative overflow-hidden'
         onClick={stopPropagation}
         onMouseMove={handleMouseMove}
-        style={{
-          marginTop: `calc(${-1450 + window.scrollY * 2}px - 40vw + 100vh)`,
+        initial={{
           borderRadius: '40px'
+        }}
+        style={{
+          marginTop: `calc(${-1450 + window.scrollY * 2}px - 40vw + 100vh)`
         }}
       >
         <motion.div
@@ -78,7 +80,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
           <motion.img
             layoutId={`image-${title}`}
             className='w-full h-auto max-h-80 object-contain'
-            style={{ width: '500px' }}
+            style={{ borderRadius: '30px' }}
             src={imageSrc}
             alt={title}
           />
@@ -114,7 +116,6 @@ const ProjectTile: FC<ProjectTileProps> = ({
                   transition={{ duration: 0.4, type: 'spring', delay: 0.1 }}
                   onClick={() => window.open(webUrl, '_blank')}
                 >
-                  Open
                   <div
                     className='icons8-new-tab'
                     style={{
@@ -123,6 +124,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
                       marginBottom: '-2px'
                     }}
                   ></div>
+                  Open
                 </motion.button>
               ) : (
                 <div></div>
@@ -140,7 +142,6 @@ const ProjectTile: FC<ProjectTileProps> = ({
                 transition={{ duration: 0.4, type: 'spring', delay: 0.2 }}
                 onClick={() => window.open(githubUrl, '_blank')}
               >
-                Source Code
                 <div
                   className='icons8-new-tab'
                   style={{
@@ -149,6 +150,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
                     marginBottom: '-2px'
                   }}
                 ></div>
+                Source Code
               </motion.button>
             </div>
           </div>
@@ -211,6 +213,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
             className='mx-auto h-24 mb-4 object-contain'
             src={imageSrc}
             alt={title}
+            style={{ borderRadius: '15%' }}
           />
           <motion.h3
             layoutId={`title-${title}`}

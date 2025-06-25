@@ -44,10 +44,10 @@ const ProjectsSection: React.FC = () => {
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/firebolt9907.github.io'
             webUrl='https://firebolt9907.github.io/'
-            title='This Website'
+            title='Old Website'
             year='2025'
             technology='HTML/CSS/JS'
-            description='Portfolio website showcasing my projects and skills'
+            description='Portfolio website showcasing my projects and skills made in vanilla HTML, CSS, and JS'
             imageSrc='https://imakestuff.online/wp-content/uploads/2019/12/HTML-CSS-JS-Logo.png'
           />
           <ProjectTile
@@ -65,7 +65,7 @@ const ProjectsSection: React.FC = () => {
             year='2022-23'
             technology='Flutter'
             description='Multiplayer Game with entirely custom UI for classmates'
-            imageSrc='https://play-lh.googleusercontent.com/1ftPXa9cOkqCdu7NqfrYQVsERs3oRceK2-7kl6-aEX478cMopnoNDXuRwH28KzVy5UY=w240-h480'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/ultimatetag.png?raw=true'
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/spotify_view'
