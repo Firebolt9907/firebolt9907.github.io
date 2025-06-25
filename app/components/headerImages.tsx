@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import { useState, type FC } from 'react'
 import { motion } from 'framer-motion'
 
 interface HeaderImagesProps {
@@ -7,11 +7,24 @@ interface HeaderImagesProps {
 }
 
 const HeaderImages: FC<HeaderImagesProps> = ({ hovered, setHovered }) => {
+  
+    const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
+  
+    function handleMouseMove (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+      const rect = e.currentTarget.getBoundingClientRect()
+      const centerX = rect.left + rect.width / 2
+      const centerY = rect.top + rect.height / 2
+      const relativeX = e.clientX - centerX
+      const relativeY = e.clientY - centerY
+      setCursorPosition({ x: relativeX, y: relativeY })
+    }
+
   return (
     <section
       id='img-section'
       className='pt-24 text-center flex justify-center'
       style={{ margin: '7vw 0vw', marginTop: 'calc(5vw + 20px)' }}
+      onMouseMove={handleMouseMove}
     >
       <motion.div
         initial={{

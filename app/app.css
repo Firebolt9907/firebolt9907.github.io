@@ -24,7 +24,7 @@ html {
   perspective: 1000;
   transform: translate3d(0, 0, 0);
   transform: translateZ(0);
-  scroll-snap-type: y proximity;
+  scroll-snap-type: none;
 }
 
 body {
@@ -58,7 +58,7 @@ header {
   position: fixed;
   background-color: rgb(32, 32, 32);
   height: 80px;
-  z-index: 1000;
+  z-index: 50;
   border-bottom-right-radius: 20px;
   margin-top: 0px;
 }

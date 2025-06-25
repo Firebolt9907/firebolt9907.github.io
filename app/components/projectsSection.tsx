@@ -31,7 +31,7 @@ const ProjectsSection: React.FC = () => {
             year='2022'
             technology='Flutter'
             description='First app made to solve many small problems in daily life'
-            imageSrc='https://img.icons8.com/color/512/flutter.png'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/zpp.jpg?raw=true'
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/Stock-App'

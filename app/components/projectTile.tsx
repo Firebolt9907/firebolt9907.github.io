@@ -80,7 +80,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
           <motion.img
             layoutId={`image-${title}`}
             className='w-full h-auto max-h-80 object-contain'
-            style={{ borderRadius: '30px' }}
+            animate={{ borderRadius: '30px' }}
             src={imageSrc}
             alt={title}
           />
