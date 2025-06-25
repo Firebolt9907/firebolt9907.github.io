@@ -26,7 +26,7 @@ const ProjectsSection: React.FC = () => {
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/Zpp'
-            visitUrl='https://play.google.com/store/apps/details?id=com.firebolt.zpp'
+            androidUrl='https://play.google.com/store/apps/details?id=com.firebolt.zpp'
             title='Zpp'
             year='2022'
             technology='Flutter'
@@ -43,6 +43,7 @@ const ProjectsSection: React.FC = () => {
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/firebolt9907.github.io'
+            webUrl='https://firebolt9907.github.io/'
             title='This Website'
             year='2025'
             technology='HTML/CSS/JS'
@@ -59,11 +60,12 @@ const ProjectsSection: React.FC = () => {
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/ultimate-tag-flutter'
+            androidUrl='https://play.google.com/store/apps/details?id=com.firebolt.ultimate_tag'
             title='Ultimate Tag'
             year='2022-23'
             technology='Flutter'
             description='Multiplayer Game with entirely custom UI for classmates'
-            imageSrc='https://img.icons8.com/color/512/flutter.png'
+            imageSrc='https://play-lh.googleusercontent.com/1ftPXa9cOkqCdu7NqfrYQVsERs3oRceK2-7kl6-aEX478cMopnoNDXuRwH28KzVy5UY=w240-h480'
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/spotify_view'

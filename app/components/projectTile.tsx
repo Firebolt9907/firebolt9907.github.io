@@ -3,7 +3,9 @@ import { useState, useEffect, type FC } from 'react'
 
 interface ProjectTileProps {
   githubUrl: string
-  visitUrl?: string
+  webUrl?: string
+  androidUrl?: string
+  iosUrl?: string
   title: string
   year: string
   technology: string
@@ -19,7 +21,9 @@ const layoutTransition = {
 
 const ProjectTile: FC<ProjectTileProps> = ({
   githubUrl,
-  visitUrl = '',
+  webUrl = '',
+  androidUrl = '',
+  iosUrl = '',
   title,
   year,
   technology,
@@ -36,9 +40,6 @@ const ProjectTile: FC<ProjectTileProps> = ({
     const relativeX = e.clientX - centerX
     const relativeY = e.clientY - centerY
     setCursorPosition({ x: relativeX, y: relativeY })
-    console.log(
-      `Cursor Position Relative to Center: x=${relativeX}, y=${relativeY}`
-    )
   }
 
   function handleToggle () {
@@ -98,7 +99,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
               {description}
             </motion.p>
             <div className='flex flex-row md:flex-row items-start md:items-center'>
-              {visitUrl != '' ? (
+              {webUrl != '' ? (
                 <motion.button
                   style={{
                     backgroundColor: 'green',
@@ -110,8 +111,8 @@ const ProjectTile: FC<ProjectTileProps> = ({
                   }}
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1, type: 'spring' }}
-                  onClick={() => window.open(visitUrl, '_blank')}
+                  transition={{ duration: 0.4, type: 'spring', delay: 0.1 }}
+                  onClick={() => window.open(webUrl, '_blank')}
                 >
                   Open
                   <div
@@ -136,6 +137,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
                 }}
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, type: 'spring', delay: 0.2 }}
                 onClick={() => window.open(githubUrl, '_blank')}
               >
                 Source Code
@@ -166,27 +168,35 @@ const ProjectTile: FC<ProjectTileProps> = ({
           scale: 1.0,
           rotateX: -cursorPosition.y / 7,
           rotateY: cursorPosition.x / 10,
-          perspective: '100px'
+          perspective: '100px',
+          boxShadow: `${cursorPosition.x / -10}px ${
+            cursorPosition.y / -7
+          }px 20px rgba(0, 0, 0, 0.3)`,
+          transition: { duration: 0 }
         }}
         whileTap={{
           scale: 0.95,
           rotateX: 0,
           rotateY: 0,
-          perspective: '0px'
+          perspective: '0px',
+          transition: { duration: 0.3 }
         }}
         animate={{
           rotateX: 0,
           rotateY: 0,
-          perspective: '0px'
+          perspective: '0px',
+          boxShadow: `0px 0px 20px rgba(0, 0, 0, 0.3)`,
+          transition: { duration: 0.3 }
         }}
         style={{
-          boxShadow: `${cursorPosition.x / 10}px ${
-            cursorPosition.y / 7
+          boxShadow: `${cursorPosition.x / -10}px ${
+            cursorPosition.y / -7
           }px 20px rgba(0, 0, 0, 0.3)`
         }}
         onHoverEnd={() => {
           setCursorPosition({ x: 0, y: 0 })
         }}
+        transition={{ duration: 0 }}
         className='w-full h-full max-w-sm mx-auto text-gray-900 dark:text-white'
       >
         <motion.div
