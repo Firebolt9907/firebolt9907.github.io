@@ -76,7 +76,6 @@ const SocialTile: FC<SocialTileProps> = ({
         transition={{ duration: 0 }}
         className='w-full h-full max-w-sm mx-auto text-gray-900 dark:text-white'
       >
-        uuuu
         <motion.div
           className='p-4 rounded-lg shadow bg-gray-100 dark:bg-gray-900 h-full flex flex-col justify-start project-tile'
           layoutId={`card-${platform}`}

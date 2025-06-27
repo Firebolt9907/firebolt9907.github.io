@@ -14,7 +14,7 @@ const ProjectsSection: React.FC = () => {
             year='2024'
             technology='Python/Pytorch'
             description='Pytorch ML model created to predict the weather in Clive, IA'
-            imageSrc='https://static-00.iconduck.com/assets.00/pytorch-icon-1694x2048-jgwjy3ne.png'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/pytorch.webp?raw=true'
           />
           <ProjectTile
             githubUrl='https://github.com/metallum-ultorum/IntoTheDeep'
@@ -31,7 +31,7 @@ const ProjectsSection: React.FC = () => {
             year='2022'
             technology='Flutter'
             description='First app made to solve many small problems in daily life'
-            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/zpp.jpg?raw=true'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/appIcons/zpp.webp?raw=true'
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/Stock-App'
