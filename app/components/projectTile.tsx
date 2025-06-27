@@ -69,6 +69,9 @@ const ProjectTile: FC<ProjectTileProps> = ({
         initial={{
           borderRadius: '40px'
         }}
+        style={{
+          position: 'sticky'
+        }}
       >
         <motion.div
           className='p-6 shadow-2xl bg-white dark:bg-gray-900 text-gray-900 dark:text-white flex flex-col md:flex-row items-center gap-6'
