@@ -65,7 +65,7 @@ const ProjectsSection: React.FC = () => {
             year='2022-23'
             technology='Flutter'
             description='Multiplayer Game with entirely custom UI for classmates'
-            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/appIcons/ultimatetag.png?raw=true'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/appIcons/ultimatetag.webp?raw=true'
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/spotify_view'
