@@ -22,7 +22,7 @@ const ProjectsSection: React.FC = () => {
             year='2024-25'
             technology='Java'
             description='Code for Metallum Ultorum Robot using Java OOP'
-            imageSrc='https://cdn.freebiesupply.com/logos/large/2x/java-logo-svg-vector.svg'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/java.svg?raw=true'
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/Zpp'
@@ -39,7 +39,7 @@ const ProjectsSection: React.FC = () => {
             year='2023'
             technology='Flutter'
             description='Stocks app made for clean UI and simplicity in mind'
-            imageSrc='https://img.icons8.com/color/512/flutter.png'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/react-refactor/assets/langIcons/flutter.webp?raw=true'
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/firebolt9907.github.io'
@@ -48,7 +48,7 @@ const ProjectsSection: React.FC = () => {
             year='2025'
             technology='HTML/CSS/JS'
             description='Portfolio website showcasing my projects and skills made in vanilla HTML, CSS, and JS'
-            imageSrc='https://imakestuff.online/wp-content/uploads/2019/12/HTML-CSS-JS-Logo.png'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/htmlCssJs.webp?raw=true'
           />
           <ProjectTile
             githubUrl='https://github.com/Deus-Ex-Machina-38433/DEM-RC-Master'
@@ -56,7 +56,7 @@ const ProjectsSection: React.FC = () => {
             year='2021-23'
             technology='Java'
             description='Code for Deus Ex Machina Robot using Java OOP'
-            imageSrc='https://cdn.freebiesupply.com/logos/large/2x/java-logo-svg-vector.svg'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/java.svg?raw=true'
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/ultimate-tag-flutter'
@@ -65,7 +65,7 @@ const ProjectsSection: React.FC = () => {
             year='2022-23'
             technology='Flutter'
             description='Multiplayer Game with entirely custom UI for classmates'
-            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/ultimatetag.png?raw=true'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/appIcons/ultimatetag.png?raw=true'
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/spotify_view'
@@ -73,7 +73,7 @@ const ProjectsSection: React.FC = () => {
             year='2023'
             technology='Flutter'
             description='App created to turn my phone into a Car Thing with lyrics'
-            imageSrc='https://img.icons8.com/color/512/flutter.png'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/react-refactor/assets/langIcons/flutter.webp?raw=true'
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/praaccc'
@@ -82,7 +82,7 @@ const ProjectsSection: React.FC = () => {
             year='2023'
             technology='Flutter'
             description='App created to allow people on my swim team to rate workouts'
-            imageSrc='https://img.icons8.com/color/512/flutter.png'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/react-refactor/assets/appIcons/praaccc.webp?raw=true'
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/gradeManipulator'
@@ -90,7 +90,7 @@ const ProjectsSection: React.FC = () => {
             year='2024'
             technology='Flutter'
             description='App created to calculate grades with weighted sections'
-            imageSrc='https://img.icons8.com/color/512/flutter.png'
+            imageSrc='https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/react-refactor/assets/langIcons/flutter.webp?raw=true'
           />
         </div>
       </section>
