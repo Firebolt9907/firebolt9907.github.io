@@ -63,14 +63,11 @@ const ProjectTile: FC<ProjectTileProps> = ({
       <motion.div
         layoutId={title}
         transition={layoutTransition}
-        className='modal w-full max-w-2xl relative overflow-hidden'
+        className='modal w-full max-w-2xl fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden'
         onClick={stopPropagation}
         onMouseMove={handleMouseMove}
         initial={{
           borderRadius: '40px'
-        }}
-        style={{
-          marginTop: `calc(${-1450 + window.scrollY * 2}px - 40vw + 100vh)`
         }}
       >
         <motion.div
