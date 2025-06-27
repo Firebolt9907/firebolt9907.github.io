@@ -14,9 +14,9 @@ const SocialSection: React.FC = () => {
         ></SocialTile>
         <SocialTile
           platform='Linkedin'
-          platformSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/linkedin.webp?raw=true'
+          platformSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/linkedin.png?raw=true'
           url='https://www.linkedin.com/in/rishit-sharma-2a7904299/'
-          pfpSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/myPics/professionalpfp.webp?raw=true'
+          pfpSrc='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/myPics/professionalpfp.jpg?raw=true'
         ></SocialTile>
       </div>
     </section>
