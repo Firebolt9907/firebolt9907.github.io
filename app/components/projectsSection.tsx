@@ -77,6 +77,7 @@ const ProjectsSection: React.FC = () => {
           />
           <ProjectTile
             githubUrl='https://github.com/Firebolt9907/praaccc'
+            androidUrl='https://play.google.com/store/apps/details?id=com.firebolt.prac'
             title='Praaccc'
             year='2023'
             technology='Flutter'

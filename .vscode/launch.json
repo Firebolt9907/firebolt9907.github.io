@@ -6,7 +6,8 @@
             "preLaunchTask": "build",
             "runtimeArgs": [
                 "run-script",
-                "dev"
+                "dev",
+                "--host"
             ],
             "runtimeExecutable": "npm",
             "skipFiles": [

@@ -56,8 +56,8 @@ const ProjectTile: FC<ProjectTileProps> = ({
     >
       <motion.div
         className='absolute inset-0 bg-black'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.8 }}
+        initial={{ opacity: 0, backdropFilter: 'blur(20px)' }}
+        animate={{ opacity: 0.8, backdropFilter: 'blur(20px)' }}
         transition={{ duration: 0.3 }}
       />
       <motion.div
@@ -104,6 +104,35 @@ const ProjectTile: FC<ProjectTileProps> = ({
               {webUrl != '' ? (
                 <motion.button
                   style={{
+                    backgroundColor: 'white',
+                    borderRadius: '20px',
+                    padding: '10px 20px',
+                    marginTop: '10px',
+                    marginLeft: '0px',
+                    marginRight: '10px',
+                    color: 'black'
+                  }}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, type: 'spring', delay: 0.1 }}
+                  onClick={() => window.open(webUrl, '_blank')}
+                >
+                  <div
+                    className='icons8-new-tab'
+                    style={{
+                      marginLeft: '5px',
+                      marginRight: '-2px',
+                      marginBottom: '-2px'
+                    }}
+                  ></div>
+                  Open
+                </motion.button>
+              ) : (
+                <div></div>
+              )}
+              {androidUrl != '' ? (
+                <motion.button
+                  style={{
                     backgroundColor: 'green',
                     borderRadius: '20px',
                     padding: '10px 20px',
@@ -124,7 +153,35 @@ const ProjectTile: FC<ProjectTileProps> = ({
                       marginBottom: '-2px'
                     }}
                   ></div>
-                  Open
+                  Android
+                </motion.button>
+              ) : (
+                <div></div>
+              )}
+              {iosUrl != '' ? (
+                <motion.button
+                  style={{
+                    backgroundColor: 'green',
+                    borderRadius: '20px',
+                    padding: '10px 20px',
+                    marginTop: '10px',
+                    marginLeft: '0px',
+                    marginRight: '10px'
+                  }}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, type: 'spring', delay: 0.1 }}
+                  onClick={() => window.open(webUrl, '_blank')}
+                >
+                  <div
+                    className='icons8-new-tab'
+                    style={{
+                      marginLeft: '5px',
+                      marginRight: '-2px',
+                      marginBottom: '-2px'
+                    }}
+                  ></div>
+                  iOS
                 </motion.button>
               ) : (
                 <div></div>
@@ -171,30 +228,33 @@ const ProjectTile: FC<ProjectTileProps> = ({
           rotateX: -cursorPosition.y / 7,
           rotateY: cursorPosition.x / 10,
           perspective: '100px',
-          boxShadow: `${cursorPosition.x / -10}px ${
-            cursorPosition.y / -7
-          }px 20px rgba(0, 0, 0, 0.3)`,
-          transition: { duration: 0 }
+          boxShadow: `${(cursorPosition.x / -10) * 1.5}px ${
+            (cursorPosition.y / -7) * 1.5
+          }px 20px rgba(0, 0, 0, 0.4)`,
+          transition: { duration: 0 },
+          borderRadius: '20px'
         }}
         whileTap={{
           scale: 0.95,
           rotateX: 0,
           rotateY: 0,
           perspective: '0px',
-          transition: { duration: 0.3 }
+          transition: { duration: 0.3 },
+          boxShadow: `0px 0px 20px rgba(0, 0, 0, 0.8)`
         }}
         animate={{
           rotateX: 0,
           rotateY: 0,
           perspective: '0px',
-          boxShadow: `0px 0px 20px rgba(0, 0, 0, 0.3)`,
-          transition: { duration: 0.3 }
+          boxShadow: `0px 0px 20px rgba(0, 0, 0, 0.2)`,
+          transition: { duration: 0.3 },
+          borderRadius: '5px'
         }}
-        style={{
-          boxShadow: `${cursorPosition.x / -10}px ${
-            cursorPosition.y / -7
-          }px 20px rgba(0, 0, 0, 0.3)`
-        }}
+        // style={{
+        //   boxShadow: `${cursorPosition.x / -10}px ${
+        //     cursorPosition.y / -7
+        //   }px 20px rgba(0, 0, 0, 0.4)`
+        // }}
         onHoverEnd={() => {
           setCursorPosition({ x: 0, y: 0 })
         }}
@@ -202,10 +262,12 @@ const ProjectTile: FC<ProjectTileProps> = ({
         className='w-full h-full max-w-sm mx-auto text-gray-900 dark:text-white'
       >
         <motion.div
-          className='p-4 rounded-lg shadow bg-gray-100 dark:bg-gray-900 h-full flex flex-col justify-start'
+          className='p-4 shadow h-full flex flex-col justify-start project-tile'
           layoutId={`card-${title}`}
-          style={{
-            transformStyle: 'preserve-3d'
+          animate={{ borderRadius: '5px', backgroundColor: 'rgb(32,32,32)' }}
+          whileHover={{
+            borderRadius: '20px',
+            backgroundColor: 'rgb(55,55,55)'
           }}
         >
           <motion.img

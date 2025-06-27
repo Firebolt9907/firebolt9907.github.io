@@ -391,7 +391,6 @@ h4 {
   margin-bottom: 10px;
   margin-left: 50px;
   font-size: 50px;
-
 }
 
 .project-grid {
@@ -403,39 +402,15 @@ h4 {
 }
 
 .project-tile {
-  height: 370px;
-  text-align: center;
-  margin: 3px 0px;
-  transition: transform 0.5s, background-color 0.5s, border-radius 0.5s;
   border: 2px solid rgb(55, 55, 55);
-  border-radius: 10px;
-  perspective: 1000px;
-  transform: scale(1.0) rotate(0deg);
+  border-radius: 5px;
+  transform: 'preserve-3d'
 }
 
 .project-tile:active {
   transform: scale(0.95);
   background-color: rgb(55, 55, 55);
   border-radius: 20px;
-}
-
-.project-tile h3 {
-  font-size: 25px;
-}
-
-.project-tile h4 {
-  margin-top: -10px;
-}
-
-.project-tile img {
-  max-width: 200px;
-  max-height: 200px;
-  margin: 0px 25px;
-  margin-top: 10px;
-}
-
-.project-tile p {
-  margin: 0px 10px;
 }
 
 @keyframes scrolly {
@@ -481,20 +456,12 @@ h4 {
   }
 }
 
-@media (max-width:600px) {
+/* @media (max-width:600px) {
   .project-tile {
     transition: transform 0.3s background-color 0.3s border-radius 0.3s !important;
     scroll-snap-align: center;
   }
-}
-
-@media (min-width: 600px) {
-  .project-tile:hover {
-    transform: scale(1.1);
-    background-color: rgb(55, 55, 55);
-    border-radius: 20px;
-  }
-}
+} */
 
 .social {
   align-items: center;

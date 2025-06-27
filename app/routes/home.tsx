@@ -9,8 +9,8 @@ import Header from '~/components/header'
 
 export function meta ({}: Route.MetaArgs) {
   return [
-    { title: "Rishu Sharma's Portfolio" },
-    { name: 'description', content: 'Portfolio' }
+    { title: 'New React Router App' },
+    { name: 'description', content: 'Welcome to React Router!' }
   ]
 }
 

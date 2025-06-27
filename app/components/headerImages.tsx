@@ -7,17 +7,16 @@ interface HeaderImagesProps {
 }
 
 const HeaderImages: FC<HeaderImagesProps> = ({ hovered, setHovered }) => {
-  
-    const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
-  
-    function handleMouseMove (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-      const rect = e.currentTarget.getBoundingClientRect()
-      const centerX = rect.left + rect.width / 2
-      const centerY = rect.top + rect.height / 2
-      const relativeX = e.clientX - centerX
-      const relativeY = e.clientY - centerY
-      setCursorPosition({ x: relativeX, y: relativeY })
-    }
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
+
+  function handleMouseMove (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    const relativeX = e.clientX - centerX
+    const relativeY = e.clientY - centerY
+    setCursorPosition({ x: relativeX, y: relativeY })
+  }
 
   return (
     <section
@@ -93,7 +92,7 @@ const HeaderImages: FC<HeaderImagesProps> = ({ hovered, setHovered }) => {
         onHoverEnd={() => setHovered(false)}
         className='inline-block w-1/4 rounded-full overflow-hidden shadow-lg hover:shadow-4xl transition-shadow duration-300'
       >
-        <img
+        <motion.img
           className='centered h-full w-full object-cover'
           //   UPLOAD IMAGE TO GITHUB AND USE RAW URL
           src='https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/professionalpfp.jpg?raw=true'
