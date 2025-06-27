@@ -95,7 +95,7 @@ const HeaderImages: FC<HeaderImagesProps> = ({ hovered, setHovered }) => {
         <motion.img
           className='centered h-full w-full object-cover'
           //   UPLOAD IMAGE TO GITHUB AND USE RAW URL
-          src='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/myPics/professionalpfp.jpg?raw=true'
+          src='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/myPics/professionalpfp.webp?raw=true'
           alt='My Professional Headshot'
         />
       </motion.div>
@@ -107,7 +107,7 @@ const HeaderImages: FC<HeaderImagesProps> = ({ hovered, setHovered }) => {
       >
         <img
           className='h-full w-full object-cover rounded-full'
-          src='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/myPics/goofypfp.jpg?raw=true'
+          src='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/myPics/goofypfp.webp?raw=true'
           alt='My Social Media Profile Picture'
         />
       </motion.div>
