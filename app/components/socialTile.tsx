@@ -45,6 +45,8 @@ const SocialTile: FC<SocialTileProps> = ({
           scale: 1.0,
           rotateX: -cursorPosition.y / 7,
           rotateY: cursorPosition.x / 10,
+          x: cursorPosition.x / 20,
+          y: cursorPosition.y / 14,
           perspective: '100px',
           boxShadow: `${cursorPosition.x / -10}px ${
             cursorPosition.y / -7
@@ -55,12 +57,16 @@ const SocialTile: FC<SocialTileProps> = ({
           scale: 0.95,
           rotateX: 0,
           rotateY: 0,
+          x: 0,
+          y: 0,
           perspective: '0px',
           transition: { duration: 0.3 }
         }}
         animate={{
           rotateX: 0,
           rotateY: 0,
+          x: 0,
+          y: 0,
           perspective: '0px',
           boxShadow: `0px 0px 20px rgba(0, 0, 0, 0.3)`,
           transition: { duration: 0.3 }

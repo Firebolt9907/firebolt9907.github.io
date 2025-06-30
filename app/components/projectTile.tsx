@@ -226,11 +226,13 @@ const ProjectTile: FC<ProjectTileProps> = ({
       <motion.div
         whileHover={{
           scale: 1.0,
-          rotateX: -cursorPosition.y / 7,
-          rotateY: cursorPosition.x / 10,
+          rotateX: cursorPosition.y / 7,
+          rotateY: -cursorPosition.x / 10,
+          x: cursorPosition.x / 20,
+          y: cursorPosition.y / 14,
           perspective: '100px',
-          boxShadow: `${(cursorPosition.x / -10) * 1.5}px ${
-            (cursorPosition.y / -7) * 1.5
+          boxShadow: `${(cursorPosition.x / 10) * 1.5}px ${
+            (cursorPosition.y / 7) * 1.5
           }px 20px rgba(0, 0, 0, 0.4)`,
           transition: { duration: 0 },
           borderRadius: '20px'
@@ -239,6 +241,8 @@ const ProjectTile: FC<ProjectTileProps> = ({
           scale: 0.95,
           rotateX: 0,
           rotateY: 0,
+          x: 0,
+          y: 0,
           perspective: '0px',
           transition: { duration: 0.3 },
           boxShadow: `0px 0px 20px rgba(0, 0, 0, 0.8)`
@@ -246,9 +250,11 @@ const ProjectTile: FC<ProjectTileProps> = ({
         animate={{
           rotateX: 0,
           rotateY: 0,
+          x: 0,
+          y: 0,
           perspective: '0px',
           boxShadow: `0px 0px 20px rgba(0, 0, 0, 0.2)`,
-          transition: { duration: 0.3 },
+          transition: { duration: 0.6 },
           borderRadius: '5px'
         }}
         // style={{
