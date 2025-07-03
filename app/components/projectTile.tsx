@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect, type FC } from 'react'
+import ShimmerTile from './shimmerTile'
 
 interface ProjectTileProps {
   githubUrl: string
@@ -31,20 +32,40 @@ const ProjectTile: FC<ProjectTileProps> = ({
   imageSrc
 }) => {
   const [stateOpen, setOpen] = useState(false)
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
-
-  function handleMouseMove (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const centerX = rect.left + rect.width / 2
-    const centerY = rect.top + rect.height / 2
-    const relativeX = e.clientX - centerX
-    const relativeY = e.clientY - centerY
-    setCursorPosition({ x: relativeX, y: relativeY })
-  }
 
   function handleToggle () {
     setOpen(!stateOpen)
   }
+
+  var tileContent = (
+    <div>
+      <motion.img
+        layoutId={`image-${title}`}
+        className='mx-auto h-24 mb-4 object-contain'
+        src={imageSrc}
+        alt={title}
+        style={{ borderRadius: '15%' }}
+      />
+      <motion.h3
+        layoutId={`title-${title}`}
+        className='text-lg font-bold text-center'
+      >
+        {title}
+      </motion.h3>
+      <motion.h4
+        layoutId={`tech-${title}`}
+        className='text-xs text-gray-500 dark:text-gray-400 mb-2 text-center'
+      >
+        {year} - {technology}
+      </motion.h4>
+      <motion.p
+        layoutId={`desc-${title}`}
+        className='text-center text-sm text-gray-600 dark:text-gray-300'
+      >
+        {description}
+      </motion.p>
+    </div>
+  )
 
   const stopPropagation = (e: React.MouseEvent) => e.stopPropagation()
 
@@ -65,7 +86,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
         transition={layoutTransition}
         className='modal w-2xl fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden'
         onClick={stopPropagation}
-        onMouseMove={handleMouseMove}
+        // onMouseMove={handleMouseMove}
         initial={{
           borderRadius: '40px'
         }}
@@ -216,95 +237,11 @@ const ProjectTile: FC<ProjectTileProps> = ({
       </motion.div>
     </div>
   ) : (
-    <motion.div
-      layoutId={title}
-      transition={layoutTransition}
-      className='card cursor-pointer p-2'
-      onClick={handleToggle}
-      onMouseMove={handleMouseMove}
-    >
-      <motion.div
-        whileHover={{
-          scale: 1.0,
-          rotateX: cursorPosition.y / 7,
-          rotateY: -cursorPosition.x / 10,
-          x: cursorPosition.x / 20,
-          y: cursorPosition.y / 14,
-          perspective: '100px',
-          boxShadow: `${(cursorPosition.x / 10) * 1.5}px ${
-            (cursorPosition.y / 7) * 1.5
-          }px 20px rgba(0, 0, 0, 0.4)`,
-          transition: { duration: 0 },
-          borderRadius: '20px'
-        }}
-        whileTap={{
-          scale: 0.95,
-          rotateX: 0,
-          rotateY: 0,
-          x: 0,
-          y: 0,
-          perspective: '0px',
-          transition: { duration: 0.3 },
-          boxShadow: `0px 0px 20px rgba(0, 0, 0, 0.8)`
-        }}
-        animate={{
-          rotateX: 0,
-          rotateY: 0,
-          x: 0,
-          y: 0,
-          perspective: '0px',
-          boxShadow: `0px 0px 20px rgba(0, 0, 0, 0.2)`,
-          transition: { duration: 0.6 },
-          borderRadius: '5px'
-        }}
-        // style={{
-        //   boxShadow: `${cursorPosition.x / -10}px ${
-        //     cursorPosition.y / -7
-        //   }px 20px rgba(0, 0, 0, 0.4)`
-        // }}
-        onHoverEnd={() => {
-          setCursorPosition({ x: 0, y: 0 })
-        }}
-        transition={{ duration: 0 }}
-        className='w-full h-full max-w-sm mx-auto text-gray-900 dark:text-white'
-      >
-        <motion.div
-          className='p-4 shadow h-full flex flex-col justify-start project-tile'
-          layoutId={`card-${title}`}
-          animate={{ borderRadius: '5px', backgroundColor: 'rgb(32,32,32)' }}
-          whileHover={{
-            borderRadius: '20px',
-            backgroundColor: 'rgb(55,55,55)'
-          }}
-        >
-          <motion.img
-            layoutId={`image-${title}`}
-            className='mx-auto h-24 mb-4 object-contain'
-            src={imageSrc}
-            alt={title}
-            style={{ borderRadius: '15%' }}
-          />
-          <motion.h3
-            layoutId={`title-${title}`}
-            className='text-lg font-bold text-center'
-          >
-            {title}
-          </motion.h3>
-          <motion.h4
-            layoutId={`tech-${title}`}
-            className='text-xs text-gray-500 dark:text-gray-400 mb-2 text-center'
-          >
-            {year} - {technology}
-          </motion.h4>
-          <motion.p
-            layoutId={`desc-${title}`}
-            className='text-center text-sm text-gray-600 dark:text-gray-300'
-          >
-            {description}
-          </motion.p>
-        </motion.div>
-      </motion.div>
-    </motion.div>
+    <ShimmerTile
+      content={tileContent}
+      title={title}
+      handleClick={handleToggle}
+    ></ShimmerTile>
   )
 }
 
