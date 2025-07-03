@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect, type FC } from 'react'
-import ShimmerTile from './shimmerTile'
+import ShimmerTile from './subcomponents/shimmerTile'
 
 interface SocialTileProps {
   platform: string
@@ -49,13 +49,7 @@ const SocialTile: FC<SocialTileProps> = ({
     </div>
   )
 
-  return (
-    <ShimmerTile
-      handleClick={handleClick}
-      title={platform}
-      content={content}
-    ></ShimmerTile>
-  )
+  return <ShimmerTile handleClick={handleClick} content={content}></ShimmerTile>
 }
 
 export default SocialTile

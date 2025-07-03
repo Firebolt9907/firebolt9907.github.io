@@ -1,4 +1,5 @@
 import React from 'react'
+import ShimmerTile from './subcomponents/shimmerTile'
 
 const NavBar: React.FC = () => {
   return (
@@ -8,19 +9,19 @@ const NavBar: React.FC = () => {
         src='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/myPics/signature.webp?raw=true'
         alt='My Signature'
       />
-      <nav className='space-x-4'>
-        <a
-          href='#projects'
-          className='text-white px-3 py-2 rounded hover:bg-gray-700'
-        >
-          Projects
-        </a>
-        <a
-          href='#contact'
-          className='text-white px-3 py-2 rounded hover:bg-gray-700'
-        >
-          Contact
-        </a>
+      <nav className=' flex row'>
+        <ShimmerTile
+          content={<p>Projects</p>}
+          handleClick={() => {
+            window.location.href = '#projects'
+          }}
+        />
+        <ShimmerTile
+          content={<p>Contact</p>}
+          handleClick={() => {
+            window.location.href = '#contact'
+          }}
+        />
       </nav>
     </header>
   )

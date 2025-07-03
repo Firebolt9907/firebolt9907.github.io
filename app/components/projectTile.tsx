@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect, type FC } from 'react'
-import ShimmerTile from './shimmerTile'
+import ShimmerTile from './subcomponents/shimmerTile'
 
 interface ProjectTileProps {
   githubUrl: string
@@ -241,7 +241,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
       content={tileContent}
       title={title}
       handleClick={handleToggle}
-    ></ShimmerTile>
+    />
   )
 }
 

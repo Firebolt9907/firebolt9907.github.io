@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 interface ShimmerTileProps {
   content: React.ReactNode
-  title: string
+  title?: string
   handleClick: React.MouseEventHandler<HTMLDivElement>
 }
 
@@ -47,7 +47,7 @@ const ShimmerTile: React.FC<ShimmerTileProps> = ({
 
   return (
     <motion.div
-      layoutId={title}
+      layoutId={title ?? undefined}
       transition={layoutTransition}
       className='card cursor-pointer p-2'
       onClick={handleClick}
