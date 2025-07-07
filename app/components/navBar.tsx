@@ -1,5 +1,5 @@
 import React from 'react'
-import ShimmerTile from './subcomponents/shimmerTile'
+import ShimmerButton from './subcomponents/shimmerTile'
 
 const NavBar: React.FC = () => {
   return (
@@ -9,15 +9,17 @@ const NavBar: React.FC = () => {
         src='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/myPics/signature.webp?raw=true'
         alt='My Signature'
       />
-      <nav className=' flex row'>
-        <ShimmerTile
-          content={<p>Projects</p>}
+      <nav className='flex row'>
+        <ShimmerButton
+          content={<h3>Projects</h3>}
+          tile={false}
           handleClick={() => {
             window.location.href = '#projects'
           }}
         />
-        <ShimmerTile
-          content={<p>Contact</p>}
+        <ShimmerButton
+          content={<h3>Contact</h3>}
+          tile={false}
           handleClick={() => {
             window.location.href = '#contact'
           }}

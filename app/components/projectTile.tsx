@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect, type FC } from 'react'
-import ShimmerTile from './subcomponents/shimmerTile'
+import ShimmerButton from './subcomponents/shimmerTile'
 
 interface ProjectTileProps {
   githubUrl: string
@@ -12,6 +12,7 @@ interface ProjectTileProps {
   technology: string
   description: string
   imageSrc: string
+  loadingIndex: number
 }
 
 const layoutTransition = {
@@ -29,7 +30,8 @@ const ProjectTile: FC<ProjectTileProps> = ({
   year,
   technology,
   description,
-  imageSrc
+  imageSrc,
+  loadingIndex = 0
 }) => {
   const [stateOpen, setOpen] = useState(false)
 
@@ -124,124 +126,72 @@ const ProjectTile: FC<ProjectTileProps> = ({
             </motion.p>
             <div className='flex flex-row md:flex-row items-start md:items-center'>
               {webUrl != '' ? (
-                <motion.button
-                  style={{
-                    backgroundColor: 'white',
-                    borderRadius: '20px',
-                    padding: '10px 20px',
-                    marginTop: '10px',
-                    marginLeft: '0px',
-                    marginRight: '10px',
-                    color: 'black'
-                  }}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, type: 'spring', delay: 0.1 }}
-                  onClick={() => window.open(webUrl, '_blank')}
-                >
-                  <div
-                    className='icons8-new-tab'
-                    style={{
-                      marginLeft: '5px',
-                      marginRight: '-2px',
-                      marginBottom: '-2px'
-                    }}
-                  ></div>
-                  Open
-                </motion.button>
+                <ShimmerButton
+                  content={<p style={{ color: 'black' }}>Open Website</p>}
+                  handleClick={() => window.open(webUrl, '_blank')}
+                  background='rgb(200,200,200)'
+                  backgroundHovered='rgb(220,220,220)'
+                  loadingIndex={8}
+                  tile={false}
+                  title='web'
+                />
               ) : (
                 <div></div>
               )}
               {androidUrl != '' ? (
-                <motion.button
-                  style={{
-                    backgroundColor: 'green',
-                    borderRadius: '20px',
-                    padding: '10px 20px',
-                    marginTop: '10px',
-                    marginLeft: '0px',
-                    marginRight: '10px'
-                  }}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, type: 'spring', delay: 0.1 }}
-                  onClick={() => window.open(webUrl, '_blank')}
-                >
-                  <div
-                    className='icons8-new-tab'
-                    style={{
-                      marginLeft: '5px',
-                      marginRight: '-2px',
-                      marginBottom: '-2px'
-                    }}
-                  ></div>
-                  Android
-                </motion.button>
+                <ShimmerButton
+                  content={<p>Android</p>}
+                  handleClick={() => window.open(androidUrl, '_blank')}
+                  background='rgb(39, 147, 39)'
+                  backgroundHovered='rgb(60, 167, 60)'
+                  loadingIndex={8}
+                  tile={false}
+                  title='android'
+                />
               ) : (
                 <div></div>
               )}
               {iosUrl != '' ? (
-                <motion.button
-                  style={{
-                    backgroundColor: 'green',
-                    borderRadius: '20px',
-                    padding: '10px 20px',
-                    marginTop: '10px',
-                    marginLeft: '0px',
-                    marginRight: '10px'
-                  }}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, type: 'spring', delay: 0.1 }}
-                  onClick={() => window.open(webUrl, '_blank')}
-                >
-                  <div
-                    className='icons8-new-tab'
-                    style={{
-                      marginLeft: '5px',
-                      marginRight: '-2px',
-                      marginBottom: '-2px'
-                    }}
-                  ></div>
-                  iOS
-                </motion.button>
+                <ShimmerButton
+                  content={<p>Source Code</p>}
+                  handleClick={() => window.open(iosUrl, '_blank')}
+                  background='blue'
+                  // backgroundHovered='rgb(80,80,80)'
+                  loadingIndex={8}
+                  tile={false}
+                  title='ios'
+                />
               ) : (
                 <div></div>
               )}
-              <motion.button
-                style={{
-                  backgroundColor: '#2b3137',
-                  borderRadius: '20px',
-                  padding: '10px 20px',
-                  marginTop: '10px',
-                  marginLeft: '0px'
-                }}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, type: 'spring', delay: 0.2 }}
-                onClick={() => window.open(githubUrl, '_blank')}
-              >
-                <div
-                  className='icons8-new-tab'
-                  style={{
-                    marginLeft: '5px',
-                    marginRight: '-2px',
-                    marginBottom: '-2px'
-                  }}
-                ></div>
-                Source Code
-              </motion.button>
+              <ShimmerButton
+                content={<p>Source Code</p>}
+                handleClick={() => window.open(githubUrl, '_blank')}
+                background='rgb(60,60,60)'
+                backgroundHovered='rgb(80,80,80)'
+                loadingIndex={8}
+                tile={false}
+                title='sourcecode'
+              />
             </div>
           </div>
         </motion.div>
       </motion.div>
     </div>
   ) : (
-    <ShimmerTile
-      content={tileContent}
-      title={title}
-      handleClick={handleToggle}
-    />
+    <motion.div
+      layoutId={title}
+      transition={layoutTransition}
+      className='card p-2 cursor-pointer'
+    >
+      <ShimmerButton
+        content={tileContent}
+        title={title}
+        handleClick={handleToggle}
+        tile={true}
+        loadingIndex={loadingIndex}
+      />
+    </motion.div>
   )
 }
 

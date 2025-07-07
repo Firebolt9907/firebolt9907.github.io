@@ -401,17 +401,6 @@ h4 {
   padding: 10px 40px;
 }
 
-.project-tile {
-  border: 2px solid rgb(55, 55, 55);
-  border-radius: 5px;
-  transform: 'preserve-3d'
-}
-
-.project-tile:active {
-  transform: scale(0.95);
-  background-color: rgb(55, 55, 55);
-  border-radius: 20px;
-}
 
 @keyframes scrolly {
   0% {
