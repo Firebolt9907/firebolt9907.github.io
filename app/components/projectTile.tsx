@@ -124,7 +124,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
             <motion.p layoutId={`desc-${title}`} className='text-base'>
               {description}
             </motion.p>
-            <div className='flex flex-row md:flex-row items-start md:items-center gap-1'>
+            <div className='flex flex-row md:flex-row items-start md:items-center gap-2 mt-4'>
               {webUrl != '' ? (
                 <ShimmerButton
                   content={<p style={{ color: 'black' }}>Open Website</p>}
@@ -139,9 +139,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
                   tile={false}
                   title='web'
                 />
-              ) : (
-                <div></div>
-              )}
+              ) : undefined}
               {androidUrl != '' ? (
                 <ShimmerButton
                   content={<p>Android</p>}
@@ -156,9 +154,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
                   tile={false}
                   title='android'
                 />
-              ) : (
-                <div></div>
-              )}
+              ) : undefined}
               {iosUrl != '' ? (
                 <ShimmerButton
                   content={<p>Source Code</p>}
@@ -173,9 +169,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
                   tile={false}
                   title='ios'
                 />
-              ) : (
-                <div></div>
-              )}
+              ) : undefined}
               <ShimmerButton
                 content={<p>Source Code</p>}
                 handleClick={() => window.open(githubUrl, '_blank')}
