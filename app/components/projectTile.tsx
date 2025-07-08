@@ -124,14 +124,18 @@ const ProjectTile: FC<ProjectTileProps> = ({
             <motion.p layoutId={`desc-${title}`} className='text-base'>
               {description}
             </motion.p>
-            <div className='flex flex-row md:flex-row items-start md:items-center'>
+            <div className='flex flex-row md:flex-row items-start md:items-center gap-1'>
               {webUrl != '' ? (
                 <ShimmerButton
                   content={<p style={{ color: 'black' }}>Open Website</p>}
                   handleClick={() => window.open(webUrl, '_blank')}
                   background='rgb(200,200,200)'
                   backgroundHovered='rgb(220,220,220)'
-                  loadingIndex={8}
+                  loadingIndex={
+                    [webUrl, androidUrl, iosUrl, githubUrl]
+                      .filter(Boolean)
+                      .indexOf(webUrl) + 2
+                  }
                   tile={false}
                   title='web'
                 />
@@ -144,7 +148,11 @@ const ProjectTile: FC<ProjectTileProps> = ({
                   handleClick={() => window.open(androidUrl, '_blank')}
                   background='rgb(39, 147, 39)'
                   backgroundHovered='rgb(60, 167, 60)'
-                  loadingIndex={8}
+                  loadingIndex={
+                    [webUrl, androidUrl, iosUrl, githubUrl]
+                      .filter(Boolean)
+                      .indexOf(androidUrl) + 2
+                  }
                   tile={false}
                   title='android'
                 />
@@ -157,7 +165,11 @@ const ProjectTile: FC<ProjectTileProps> = ({
                   handleClick={() => window.open(iosUrl, '_blank')}
                   background='blue'
                   // backgroundHovered='rgb(80,80,80)'
-                  loadingIndex={8}
+                  loadingIndex={
+                    [webUrl, androidUrl, iosUrl, githubUrl]
+                      .filter(Boolean)
+                      .indexOf(iosUrl) + 2
+                  }
                   tile={false}
                   title='ios'
                 />
@@ -169,7 +181,11 @@ const ProjectTile: FC<ProjectTileProps> = ({
                 handleClick={() => window.open(githubUrl, '_blank')}
                 background='rgb(60,60,60)'
                 backgroundHovered='rgb(80,80,80)'
-                loadingIndex={8}
+                loadingIndex={
+                  [webUrl, androidUrl, iosUrl, githubUrl]
+                    .filter(Boolean)
+                    .indexOf(githubUrl) + 2
+                }
                 tile={false}
                 title='sourcecode'
               />

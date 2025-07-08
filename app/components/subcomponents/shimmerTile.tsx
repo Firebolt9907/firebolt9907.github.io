@@ -32,6 +32,8 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
     yStandard: 0
   })
   const [hovered, setHover] = useState(false)
+  var standardBorderRadius = tile ? '5px' : '200px'
+  var hoveredBorderRadius = tile ? '20px' : '200px'
 
   function handleMouseMove (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -53,39 +55,30 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
     <motion.div
       onClick={handleClick}
       initial={{ opacity: 0, scale: 0.4 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      whileInView={hovered ? { opacity: 1, scale: 1 } : undefined}
+      animate={
+        !hovered
+          ? { opacity: 1, scale: 1, transition: { delay: loadingIndex * 0.1 } }
+          : undefined
+      }
       viewport={{ once: true, amount: 0.3 }}
       transition={{
         duration: 0.2
       }}
     >
-      {/* Hover detection wrapper with padding to prevent jitter */}
       <motion.div
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
+        onHoverEnd={() => {
+          setCursorPosition({ x: 0, y: 0, xStandard: 0, yStandard: 0 })
+        }}
         style={{
           padding: '20px',
           margin: '-20px'
         }}
       >
         <motion.div
-          whileHover={{
-            scale: tile ? 1.1 : 1.3,
-            rotateX: cursorPosition.yStandard * angleModifier,
-            rotateY: -cursorPosition.xStandard * angleModifier,
-            x: cursorPosition.xStandard * translateModifier,
-            y: cursorPosition.yStandard * translateModifier,
-            perspective: '100px',
-            boxShadow: `${
-              cursorPosition.xStandard * shadowPositionModifier
-            }px ${
-              cursorPosition.yStandard * shadowPositionModifier
-            }px 20px rgba(0, 0, 0, 0.4)`,
-            transition: { duration: 0 },
-            borderRadius: tile ? '20px' : '200px',
-            zIndex: 9999999
-          }}
           whileTap={{
             scale: 0.95,
             rotateX: 0,
@@ -97,19 +90,20 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
             boxShadow: `0px 0px 20px rgba(0, 0, 0, 0.8)`
           }}
           animate={{
-            rotateX: 0,
-            rotateY: 0,
-            x: 0,
-            y: 0,
-            perspective: '0px',
-            boxShadow: `0px 0px 20px rgba(0, 0, 0, 0.2)`,
-            transition: { duration: 0.6 },
-            borderRadius: tile ? '5px' : '200px',
-            scale: 1,
-            zIndex: 1
-          }}
-          onHoverEnd={() => {
-            setCursorPosition({ x: 0, y: 0, xStandard: 0, yStandard: 0 })
+            rotateX: cursorPosition.yStandard * angleModifier,
+            rotateY: -cursorPosition.xStandard * angleModifier,
+            x: cursorPosition.xStandard * translateModifier,
+            y: cursorPosition.yStandard * translateModifier,
+            perspective: hovered ? '100px' : '0px',
+            boxShadow: `${
+              cursorPosition.xStandard * shadowPositionModifier
+            }px ${
+              cursorPosition.yStandard * shadowPositionModifier
+            }px 20px rgba(0, 0, 0, ${hovered ? 0.4 : 0.2})`,
+            transition: { duration: hovered ? 0 : 0.6 },
+            borderRadius: hovered ? hoveredBorderRadius : standardBorderRadius,
+            scale: !hovered ? 1 : tile ? 1.1 : 1.1,
+            zIndex: hovered ? 9999999 : 1
           }}
           transition={{ duration: 0 }}
           style={{
@@ -120,7 +114,7 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
           className='w-full h-full mx-auto text-gray-900 dark:text-white overflow-visible cursor-pointer'
         >
           <motion.div
-            className='p-4 shadow h-full flex flex-col justify-start'
+            className='shadow h-full flex flex-col justify-start'
             layoutId={`card-${title}`}
             animate={{
               borderRadius: tile ? '5px' : '200px',
@@ -137,7 +131,8 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
               position: 'relative',
               border: tile ? `2px solid ${backgroundHovered}` : '',
               borderRadius: tile ? '5px' : '200px',
-              transform: 'preserve-3d'
+              transform: 'preserve-3d',
+              padding: `calc(var(--spacing) * ${tile ? 4 : 2})`
             }}
           >
             <motion.div
@@ -165,7 +160,7 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
                 animate={{
                   scale: hovered ? 1 : 0.9
                 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
               >
                 {content || <p>No Content</p>}
               </motion.div>
