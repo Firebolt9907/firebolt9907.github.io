@@ -33,7 +33,7 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
   })
   const [hovered, setHover] = useState(false)
   var standardBorderRadius = tile ? '5px' : '200px'
-  var hoveredBorderRadius = tile ? '20px' : '200px'
+  var hoveredBorderRadius = tile ? '30px' : '200px'
 
   function handleMouseMove (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -117,20 +117,20 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
             className='shadow h-full flex flex-col justify-start'
             layoutId={`card-${title}`}
             animate={{
-              borderRadius: tile ? '5px' : '200px',
+              borderRadius: standardBorderRadius,
               backgroundColor: background,
               clipPath: 'inset(0 round 5px)'
             }}
             whileHover={{
-              borderRadius: tile ? '20px' : '200px',
+              borderRadius: hoveredBorderRadius,
               backgroundColor: backgroundHovered,
-              clipPath: `inset(0 round ${tile ? '20px' : '200px'})`
+              clipPath: `inset(0 round ${hoveredBorderRadius})`
             }}
             style={{
               overflow: 'hidden',
               position: 'relative',
               border: tile ? `2px solid ${backgroundHovered}` : '',
-              borderRadius: tile ? '5px' : '200px',
+              borderRadius: standardBorderRadius,
               transform: 'preserve-3d',
               padding: `calc(var(--spacing) * ${tile ? 4 : 2})`
             }}
