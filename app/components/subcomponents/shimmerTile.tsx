@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import isMobile, { widthThreshold } from '../scripts/isMobile'
 
 interface ShimmerButtonProps {
   content: React.ReactNode
@@ -9,22 +10,26 @@ interface ShimmerButtonProps {
   background?: string
   backgroundHovered?: string
   loadingIndex?: number
+  borderless?: boolean
+  description?: string
 }
 
-const ShimmerButton: React.FC<ShimmerButtonProps> = ({
+export default function ShimmerButton ({
   content,
   title = undefined,
   handleClick,
   tile = false,
   background = 'rgb(32,32,32)',
   backgroundHovered = 'rgb(55,55,55)',
-  loadingIndex = 0
-}) => {
+  loadingIndex = 0,
+  borderless = false,
+  description = ''
+}: ShimmerButtonProps) {
   const angleModifier = 15
-  const translateModifier = 12
+  const translateModifier = 12 * (tile ? 1 : 0.5)
   const shadowPositionModifier = -15
-  const parallaxAngleModifier = 0.7
-  const parallaxTranslateModifier = 0.7
+  var parallaxAngleModifier = 0.7
+  var parallaxTranslateModifier = 0.7
   const [cursorPosition, setCursorPosition] = useState({
     x: 0,
     y: 0,
@@ -32,15 +37,46 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
     yStandard: 0
   })
   const [hovered, setHover] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
   var standardBorderRadius = tile ? '5px' : '200px'
   var hoveredBorderRadius = tile ? '30px' : '200px'
+  if (borderless) {
+    parallaxAngleModifier = 0
+    parallaxTranslateModifier = 0
+  }
+  const mobileHoverModifier = 0.5
+  const mobileHoverConstant = -20
+
+  useEffect(() => {
+    if (!containerRef.current) return
+    function checkCenter () {
+      const rect = containerRef.current!.getBoundingClientRect()
+      const elementCenterY = rect.top + rect.height / 2
+      const viewportCenterY = window.innerHeight / 2
+      window.innerWidth < widthThreshold
+        ? setHover(
+            Math.abs(elementCenterY - viewportCenterY) <
+              rect.height * mobileHoverModifier + mobileHoverConstant
+          )
+        : undefined
+    }
+    window.addEventListener('scroll', checkCenter, { passive: true })
+    window.addEventListener('resize', checkCenter)
+    checkCenter()
+    return () => {
+      window.removeEventListener('scroll', checkCenter)
+      window.removeEventListener('resize', checkCenter)
+    }
+  }, [])
 
   function handleMouseMove (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const rect = e.currentTarget.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
     const centerY = rect.top + rect.height / 2
+    // returns pixels on axis from center (-rect.dimension/2 < relativeAxis < rect.dimension/2)
     const relativeX = e.clientX - centerX
     const relativeY = e.clientY - centerY
+    // returns the percent of the element the mouse is from the center (-1 < relAxisStandardized < 1)
     const relXStandardized = relativeX / (rect.width / 2)
     const relYStandardized = relativeY / (rect.height / 2)
     setCursorPosition({
@@ -53,6 +89,7 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
 
   return (
     <motion.div
+      ref={containerRef}
       onClick={handleClick}
       initial={{ opacity: 0, scale: 0.4 }}
       whileInView={hovered ? { opacity: 1, scale: 1 } : undefined}
@@ -68,8 +105,13 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
     >
       <motion.div
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
+        // i don't have the slightest clue why isMobile() doesn't work here 😭
+        onMouseEnter={() =>
+          window.innerWidth < widthThreshold ? undefined : setHover(true)
+        }
+        onMouseLeave={() =>
+          window.innerWidth < widthThreshold ? undefined : setHover(false)
+        }
         onHoverEnd={() => {
           setCursorPosition({ x: 0, y: 0, xStandard: 0, yStandard: 0 })
         }}
@@ -111,28 +153,30 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
             transformStyle: 'preserve-3d',
             isolation: 'isolate'
           }}
-          className='w-full h-full mx-auto text-gray-900 dark:text-white overflow-visible cursor-pointer'
+          className='w-full h-full text-gray-900 dark:text-white overflow-visible cursor-pointer'
         >
           <motion.div
             className='shadow h-full flex flex-col justify-start'
             layoutId={`card-${title}`}
             animate={{
-              borderRadius: standardBorderRadius,
-              backgroundColor: background,
-              clipPath: 'inset(0 round 5px)'
-            }}
-            whileHover={{
-              borderRadius: hoveredBorderRadius,
-              backgroundColor: backgroundHovered,
-              clipPath: `inset(0 round ${hoveredBorderRadius})`
+              borderRadius: hovered
+                ? hoveredBorderRadius
+                : standardBorderRadius,
+              backgroundColor: hovered ? backgroundHovered : background,
+              clipPath: `inset(0 round ${
+                hovered ? hoveredBorderRadius : standardBorderRadius
+              })`
             }}
             style={{
               overflow: 'hidden',
               position: 'relative',
-              border: tile ? `2px solid ${backgroundHovered}` : '',
+              border:
+                tile && !borderless ? `2px solid ${backgroundHovered}` : '',
               borderRadius: standardBorderRadius,
               transform: 'preserve-3d',
-              padding: `calc(var(--spacing) * ${tile ? 4 : 2})`
+              padding: `calc(var(--spacing) * ${
+                4 - (borderless ? 4 : tile ? 2 : 0)
+              })`
             }}
           >
             <motion.div
@@ -158,7 +202,7 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
             >
               <motion.div
                 animate={{
-                  scale: hovered ? 1 : 0.9
+                  scale: 1 + (hovered ? 0.1 : 0) + (borderless ? 0 : -0.1)
                 }}
                 transition={{ duration: 0.2 }}
               >
@@ -167,25 +211,43 @@ const ShimmerButton: React.FC<ShimmerButtonProps> = ({
             </motion.div>
             <motion.div
               animate={{
-                backgroundColor: 'rgba(255, 255, 255, 1)',
-                height: '60px',
-                width: '60px',
-                position: 'fixed',
-                top: `calc(50% + ${cursorPosition.y}px - 30px)`,
-                left: `calc(50% + ${cursorPosition.x}px - 30px)`,
-                zIndex: 150,
-                pointerEvents: 'none',
-                borderRadius: '100%',
-                opacity: hovered ? 1 : 0,
-                filter: 'blur(50px)'
+                opacity: hovered ? 0.4 : 0
               }}
-              transition={{ duration: 0 }}
-            ></motion.div>
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div
+                animate={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.4)',
+                  height: '200px',
+                  width: '200px',
+                  position: 'fixed',
+                  top: `calc(-40% + ${cursorPosition.y * 2.5}px - 100px)`,
+                  left: `calc(50% + ${cursorPosition.x}px - 100px)`,
+                  zIndex: 150,
+                  pointerEvents: 'none',
+                  borderRadius: '100%',
+                  filter: 'blur(50px)'
+                }}
+                transition={{ duration: 0 }}
+              />
+            </motion.div>
           </motion.div>
         </motion.div>
       </motion.div>
+
+      <motion.p
+        layoutId={`desc-${title}`}
+        className='text-center text-sm'
+        animate={{
+          marginTop: hovered ? '40px' : '10px',
+          marginBottom: hovered ? '-40px' : '-10px',
+          color: hovered ? 'rgb(255,255,255)' : 'rgb(200,200,200)'
+        }}
+        transition={{ duration: hovered ? 0.1 : 0.6 }}
+        style={{ display: description != '' ? 'block' : 'none' }}
+      >
+        {description}
+      </motion.p>
     </motion.div>
   )
 }
-
-export default ShimmerButton

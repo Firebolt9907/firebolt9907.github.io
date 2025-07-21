@@ -38,6 +38,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
   function handleToggle () {
     setOpen(!stateOpen)
   }
+  
 
   var tileContent = (
     <div>
@@ -86,17 +87,36 @@ const ProjectTile: FC<ProjectTileProps> = ({
       <motion.div
         layoutId={title}
         transition={layoutTransition}
-        className='modal w-2xl fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden'
+        className='modal w-2xl top-1/2 left-1/2 md:-translate-x-1/2 -translate-y-1/2 overflow-hidden mt-0'
         onClick={stopPropagation}
-        // onMouseMove={handleMouseMove}
         initial={{
           borderRadius: '40px'
         }}
         style={{
           position: 'sticky',
-          margin: 'auto'
+          margin: 'auto',
+          transformOrigin: '50% 50% 0px',
+          marginTop: '0px'
         }}
       >
+        <motion.div className='fixed' style={{ top: 20, right: 20 }}>
+          <ShimmerButton
+            handleClick={() => handleToggle()}
+            borderless={true}
+            loadingIndex={5}
+            content={
+              <motion.img
+                src='https://www.svgrepo.com/show/499592/close-x.svg'
+                style={{
+                  height: '30px',
+                  margin: '5px 5px',
+                  marginLeft: '5px',
+                  filter: 'grayscale(1) invert(1)'
+                }}
+              />
+            }
+          />
+        </motion.div>
         <motion.div
           className='p-6 shadow-2xl bg-white dark:bg-gray-900 text-gray-900 dark:text-white flex flex-col md:flex-row items-center gap-6'
           layoutId={`card-${title}`}
@@ -199,7 +219,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
         title={title}
         handleClick={handleToggle}
         tile={true}
-        loadingIndex={loadingIndex}
+        loadingIndex={0}
       />
     </motion.div>
   )

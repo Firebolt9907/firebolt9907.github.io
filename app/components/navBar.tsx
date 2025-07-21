@@ -8,6 +8,9 @@ const NavBar: React.FC = () => {
         className='h-12'
         src='https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/myPics/signature.webp?raw=true'
         alt='My Signature'
+        onClick={() => {
+          window.location.href = ''
+        }}
       />
       <nav className='flex row'>
         <ShimmerButton
