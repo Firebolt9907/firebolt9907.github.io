@@ -25,7 +25,7 @@ export default function ShimmerButton ({
   borderless = false,
   description = ''
 }: ShimmerButtonProps) {
-  const angleModifier = 15
+  const angleModifier = 15 * (isMobile() ? 1.5 : 1)
   const translateModifier = 12 * (tile ? 1 : 0.5)
   const shadowPositionModifier = -15
   var parallaxAngleModifier = 0.7
@@ -45,7 +45,7 @@ export default function ShimmerButton ({
     parallaxTranslateModifier = 0
   }
   const mobileHoverModifier = 0.5
-  const mobileHoverConstant = -20
+  const mobileHoverConstant = -12
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -53,12 +53,25 @@ export default function ShimmerButton ({
       const rect = containerRef.current!.getBoundingClientRect()
       const elementCenterY = rect.top + rect.height / 2
       const viewportCenterY = window.innerHeight / 2
-      window.innerWidth < widthThreshold
-        ? setHover(
-            Math.abs(elementCenterY - viewportCenterY) <
-              rect.height * mobileHoverModifier + mobileHoverConstant
-          )
-        : undefined
+      if (window.innerWidth < widthThreshold) {
+        var hover =
+          Math.abs(elementCenterY - viewportCenterY) <
+          rect.height * mobileHoverModifier + mobileHoverConstant
+        console.log(hover)
+        setHover(hover)
+        if (hover) {
+          const relativeY = viewportCenterY - elementCenterY
+          const relYStandardized = relativeY / (rect.height / 2)
+          setCursorPosition({
+            x: 0,
+            xStandard: 0,
+            y: relativeY,
+            yStandard: relYStandardized
+          })
+        } else {
+          setCursorPosition({ x: 0, xStandard: 0, y: 0, yStandard: 0 })
+        }
+      }
     }
     window.addEventListener('scroll', checkCenter, { passive: true })
     window.addEventListener('resize', checkCenter)
@@ -145,7 +158,7 @@ export default function ShimmerButton ({
             transition: { duration: hovered ? 0 : 0.6 },
             borderRadius: hovered ? hoveredBorderRadius : standardBorderRadius,
             scale: !hovered ? 1 : tile ? 1.1 : 1.1,
-            zIndex: hovered ? 9999999 : 1
+            zIndex: hovered ? 99 : 1
           }}
           transition={{ duration: 0 }}
           style={{
