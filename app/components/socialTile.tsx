@@ -1,53 +1,55 @@
-import { motion } from 'framer-motion'
-import { useState, useEffect, type FC } from 'react'
-import ShimmerButton from './subcomponents/shimmerTile'
+import { motion } from "framer-motion";
+import { useState, useEffect, type FC } from "react";
+import ShimmerButton from "./subcomponents/shimmerTile";
 
 interface SocialTileProps {
-  platform: string
-  url: string
-  pfpSrc: string
-  platformSrc: string
+  platform: string;
+  url: string;
+  pfpSrc: string;
+  platformSrc: string;
+  username?: string;
 }
 
 const layoutTransition = {
-  type: 'spring',
+  type: "spring",
   stiffness: 150,
-  damping: 15
-} as const
+  damping: 15,
+} as const;
 
 const SocialTile: FC<SocialTileProps> = ({
   platform,
   url,
   pfpSrc,
-  platformSrc
+  platformSrc,
+  username = "@Firebolt9907",
 }) => {
-  function handleClick () {
-    window.open(url, '_blank')
+  function handleClick() {
+    window.open(url, "_blank");
   }
 
   var content = (
     <div>
       <motion.img
         // layoutId={`platformimg-${platform}`}
-        className='mx-auto h-24 mb-4 object-contain'
+        className="mx-auto h-24 mb-4 object-contain"
         src={platformSrc}
         alt={platform}
-        style={{ borderRadius: '15%', filter: 'brightness(0) invert(1)' }}
+        style={{ borderRadius: "15%", filter: "brightness(0) invert(1)" }}
       />
       <motion.h2
         // layoutId={`platform-${platform}`}
-        className='text-xl font-bold text-center'
+        className="text-xl font-bold text-center"
       >
         {platform}
       </motion.h2>
       <motion.h3
         // layoutId={`username-${platform}`}
-        className='text-m text-gray-500 dark:text-gray-400 text-center'
+        className="text-m text-gray-500 dark:text-gray-400 text-center"
       >
-        @Firebolt9907
+        {username}
       </motion.h3>
     </div>
-  )
+  );
 
   return (
     <ShimmerButton
@@ -56,7 +58,7 @@ const SocialTile: FC<SocialTileProps> = ({
       tile={true}
       title={platform}
     />
-  )
-}
+  );
+};
 
-export default SocialTile
+export default SocialTile;
