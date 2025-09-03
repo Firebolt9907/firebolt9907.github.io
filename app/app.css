@@ -135,12 +135,9 @@ header a img {
 #welcome-section h2 {
   font-size: 4vw;
   text-align: center;
-  margin-top: -70px;
-  margin-bottom: -80px;
   margin-left: 10%;
   margin-right: 10%;
   font-weight: 400;
-  opacity: 0;
   transition: transform 0.5s ease, margin 0.5s ease, opacity 0.5s ease;
 }
 

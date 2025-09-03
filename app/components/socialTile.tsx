@@ -8,6 +8,7 @@ interface SocialTileProps {
   pfpSrc: string;
   platformSrc: string;
   username?: string;
+  disableFilter?: boolean;
 }
 
 const layoutTransition = {
@@ -22,6 +23,7 @@ const SocialTile: FC<SocialTileProps> = ({
   pfpSrc,
   platformSrc,
   username = "@Firebolt9907",
+  disableFilter = false,
 }) => {
   function handleClick() {
     window.open(url, "_blank");
@@ -34,7 +36,11 @@ const SocialTile: FC<SocialTileProps> = ({
         className="mx-auto h-24 mb-4 object-contain"
         src={platformSrc}
         alt={platform}
-        style={{ borderRadius: "15%", filter: "brightness(0) invert(1)" }}
+        style={
+          disableFilter
+            ? { borderRadius: "20%" }
+            : { borderRadius: "20%", filter: "brightness(0) invert(1)" }
+        }
       />
       <motion.h2
         // layoutId={`platform-${platform}`}
@@ -44,7 +50,7 @@ const SocialTile: FC<SocialTileProps> = ({
       </motion.h2>
       <motion.h3
         // layoutId={`username-${platform}`}
-        className="text-m text-gray-500 dark:text-gray-400 text-center"
+        className="text-m text-gray-400 text-center"
       >
         {username}
       </motion.h3>

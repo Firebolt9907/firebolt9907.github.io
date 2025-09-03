@@ -1,6 +1,6 @@
 # Rishu Sharma's Website (Now Ported to React!)
 
-[Visit My Website](https://firebolt9907.netlify.app/)  
+[Visit My Website](https://rishitsharma.netlify.app/)  
 [Visit My Old Website For Comparison](https://firebolt9907.github.io/)
 
 ## Why Port?

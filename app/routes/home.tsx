@@ -21,7 +21,7 @@ export default function Home () {
   const [hovered, setHovered] = useState(false)
 
   return (
-    <div className='text-gray-900 dark:text-white scroll-smooth'>
+    <div className='text-white scroll-smooth'>
       <NavBar />
 
       <HeaderImages hovered={hovered} setHovered={setHovered} />

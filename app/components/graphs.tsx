@@ -87,7 +87,7 @@ const GraphsSection: React.FC = () => {
   );
 
   const renderStackedBar = (data: LangData[], type: string) => (
-    <div className="bg-gray-300 dark:bg-gray-700 h-8 rounded-full flex overflow-hidden">
+    <div className="bg-gray-700 h-8 rounded-full flex overflow-hidden">
       {data.map((item) => (
         <div
           key={item.name}
@@ -119,7 +119,7 @@ const GraphsSection: React.FC = () => {
               style={{ backgroundColor: item.color || "#888" }}
             />
             <span className="truncate">{name}</span>
-            <span className="ml-auto text-gray-500 dark:text-gray-400">
+            <span className="ml-auto text-gray-400">
               {type === "lang"
                 ? simplifyTime((item.percent / 100) * totalTime)
                 : `${item.percent.toFixed(1)}%`}

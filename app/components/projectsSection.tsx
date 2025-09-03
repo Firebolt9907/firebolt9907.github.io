@@ -6,11 +6,11 @@ const projects = [
   {
     githubUrl: "https://github.com/Firebolt9907/rangish",
     webUrl: "https://rangish.netlify.app",
-    title: "Rangish",
+    title: "S3 - Stroke & Snap",
     year: "2025",
     technology: "React / TSX / Tailwind",
     description:
-      "E-Commerce website created for a local artist to sell merchandise",
+      "E-Commerce website created for a local photographer to show their work to the world",
     imageSrc:
       "https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/react.svg?raw=true",
   },
@@ -45,7 +45,7 @@ const projects = [
   },
   {
     githubUrl: "https://github.com/Firebolt9907/firebolt9907.github.io",
-    webUrl: "https://firebolt9907.netlify.app",
+    webUrl: "https://rishitsharma.netlify.app",
     title: "New Website",
     year: "2025",
     technology: "React / TSX / Tailwind",

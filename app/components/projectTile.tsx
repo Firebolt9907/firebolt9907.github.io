@@ -57,13 +57,13 @@ const ProjectTile: FC<ProjectTileProps> = ({
       </motion.h3>
       <motion.h4
         layoutId={`tech-${title}`}
-        className='text-xs text-gray-500 dark:text-gray-400 mb-2 text-center'
+        className='text-xs text-gray-400 mb-2 text-center'
       >
         {year} - {technology}
       </motion.h4>
       <motion.p
         layoutId={`desc-${title}`}
-        className='text-center text-sm text-gray-600 dark:text-gray-300'
+        className='text-center text-sm text-gray-300'
       >
         {description}
       </motion.p>
@@ -118,7 +118,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
           />
         </motion.div>
         <motion.div
-          className='p-6 shadow-2xl bg-white dark:bg-gray-900 text-gray-900 dark:text-white flex flex-col md:flex-row items-center gap-6'
+          className='p-6 shadow-2xl bg-gray-900 text-white flex flex-col md:flex-row items-center gap-6'
           layoutId={`card-${title}`}
         >
           <motion.img
@@ -137,7 +137,7 @@ const ProjectTile: FC<ProjectTileProps> = ({
             </motion.h3>
             <motion.h4
               layoutId={`tech-${title}`}
-              className='text-xl text-gray-600 dark:text-gray-400 mb-2'
+              className='text-xl text-gray-400 mb-2'
             >
               {year} - {technology}
             </motion.h4>
