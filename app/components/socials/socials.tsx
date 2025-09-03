@@ -10,7 +10,7 @@ const SocialSection: React.FC = () => {
           platform="Instagram"
           platformSrc="https://cdn2.iconfinder.com/data/icons/2018-social-media-app-logos/1000/2018_social_media_popular_app_logo_instagram-512.png"
           pfpSrc="https://avatars.githubusercontent.com/u/83421723?v=4"
-          url="https://github.com/Firebolt9907"
+          url="https://www.instagram.com/firebolt_9907/"
           username="@firebolt_9907"
           disableFilter={true}
         />
@@ -18,7 +18,7 @@ const SocialSection: React.FC = () => {
           platform="Snapchat"
           platformSrc="https://cdn.freebiesupply.com/logos/large/2x/snapchat-logo-png-transparent.png"
           pfpSrc="https://avatars.githubusercontent.com/u/83421723?v=4"
-          url="https://rishitsharma.netlify.app/"
+          url="https://www.snapchat.com/add/firebolt_9907"
           username="@firebolt_9907"
           disableFilter={true}
         />
