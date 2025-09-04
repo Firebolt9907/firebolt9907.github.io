@@ -23,6 +23,14 @@ const SocialSection: React.FC = () => {
           disableFilter={true}
         />
         <SocialTile
+          platform="GitHub"
+          platformSrc="https://cdn.freebiesupply.com/logos/large/2x/snapchat-logo-png-transparent.png"
+          pfpSrc="https://avatars.githubusercontent.com/u/83421723?v=4"
+          url="https://www.github.com/Firebolt9907"
+          username="@Firebolt9907"
+          disableFilter={true}
+        />
+        <SocialTile
           platform="Email"
           platformSrc="https://raw.githubusercontent.com/Firebolt9907/sharmaPhotography/21dfa99a75751c0fb4cc679c6383a883f3a71621/photos/email-logo.svg"
           url="mailto:ifxccjyssfghj@gmail.com"

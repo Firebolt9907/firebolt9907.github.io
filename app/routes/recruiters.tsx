@@ -25,8 +25,8 @@ export default function Recruiters() {
   return (
     <div className="text-white scroll-smooth">
       <NavBar />
-      {/* <HeaderImages hovered={hovered} setHovered={setHovered} />
-      <Header /> */}
+      <HeaderImages hovered={hovered} setHovered={setHovered} />
+      <Header />
       {/* <GraphsSection /> */}
       <FeaturedSocialSection />
       <FeaturedProjectsSection />
