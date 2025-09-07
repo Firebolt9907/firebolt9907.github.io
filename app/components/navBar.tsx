@@ -9,7 +9,7 @@ const NavBar: React.FC = () => {
         src="https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/myPics/signature.webp?raw=true"
         alt="My Signature"
         onClick={() => {
-          window.location.href = "https://rishitsharma.netlify.app";
+          window.location.href = "https://rishitsharma.netlify.app/home";
         }}
       />
       <nav className="flex row">

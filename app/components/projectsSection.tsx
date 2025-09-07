@@ -45,7 +45,7 @@ const projects = [
   },
   {
     githubUrl: "https://github.com/Firebolt9907/firebolt9907.github.io",
-    webUrl: "https://rishitsharma.netlify.app",
+    webUrl: "https://rishitsharma.netlify.app/home",
     title: "New Website",
     year: "2025",
     technology: "React / TSX / Tailwind",

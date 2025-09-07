@@ -22,7 +22,7 @@ const FeaturedSocialSection: React.FC = () => {
           platform="Personal Portfolio"
           platformSrc="https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/react-refactor/assets/langIcons/website.svg"
           pfpSrc="https://avatars.githubusercontent.com/u/83421723?v=4"
-          url="https://rishitsharma.netlify.app/"
+          url="https://rishitsharma.netlify.app/home"
           username="rishitsharma.netlify.app"
           disableFilter={true}
         />
