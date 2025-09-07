@@ -16,7 +16,7 @@ const FeaturedSocialSection: React.FC = () => {
           platformSrc="https://www.svgrepo.com/show/11803/curriculum-vitae.svg"
           pfpSrc="https://avatars.githubusercontent.com/u/83421723?v=4"
           url="https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/react-refactor/assets/rishit-sharma-resume.pdf"
-          username=""
+          username="‏‏‎ ‎"
         />
         <SocialTile
           platform="Personal Portfolio"
