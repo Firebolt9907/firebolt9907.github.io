@@ -12,7 +12,7 @@ const projects = [
     description:
       "E-Commerce website created for a local photographer to show their work to the world",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/react.svg?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/langIcons/react.svg?raw=true",
   },
   {
     githubUrl: "https://github.com/Firebolt9907/weatherML",
@@ -21,7 +21,7 @@ const projects = [
     technology: "Python / Pytorch",
     description: "Pytorch ML model created to predict the weather in Clive, IA",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/pytorch.webp?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/langIcons/pytorch.webp?raw=true",
   },
   {
     githubUrl: "https://github.com/Firebolt9907/praaccc",
@@ -32,7 +32,7 @@ const projects = [
     technology: "Flutter",
     description: "App created to allow people on my swim team to rate workouts",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/react-refactor/assets/appIcons/praaccc.webp?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/main/assets/appIcons/praaccc.webp?raw=true",
   },
   {
     githubUrl: "https://github.com/metallum-ultorum/IntoTheDeep",
@@ -41,7 +41,7 @@ const projects = [
     technology: "Java",
     description: "Code for Metallum Ultorum Robot using Java OOP",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/java.svg?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/langIcons/java.svg?raw=true",
   },
   {
     githubUrl: "https://github.com/Firebolt9907/firebolt9907.github.io",
@@ -52,7 +52,7 @@ const projects = [
     description:
       "Redesigned portfolio website showcasing my projects and skills made in React",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/react.svg?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/langIcons/react.svg?raw=true",
   },
   {
     githubUrl: "https://github.com/Firebolt9907/Zpp",
@@ -63,7 +63,7 @@ const projects = [
     technology: "Flutter",
     description: "First app made to solve many small problems in daily life",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/appIcons/zpp.webp?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/appIcons/zpp.webp?raw=true",
   },
   {
     githubUrl: "https://github.com/Firebolt9907/Stock-App",
@@ -72,7 +72,7 @@ const projects = [
     technology: "Flutter",
     description: "Stocks app made for clean UI and simplicity in mind",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/react-refactor/assets/langIcons/flutter.webp?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/main/assets/langIcons/flutter.webp?raw=true",
   },
   {
     githubUrl: "https://github.com/Firebolt9907/firebolt9907.github.io",
@@ -83,7 +83,7 @@ const projects = [
     description:
       "Portfolio website showcasing my projects and skills made in vanilla HTML, CSS, and JS",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/htmlCssJs.webp?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/langIcons/htmlCssJs.webp?raw=true",
   },
   {
     githubUrl: "https://github.com/Deus-Ex-Machina-38433/DEM-RC-Master",
@@ -92,7 +92,7 @@ const projects = [
     technology: "Java",
     description: "Code for Deus Ex Machina Robot using Java OOP",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/java.svg?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/langIcons/java.svg?raw=true",
   },
   {
     githubUrl: "https://github.com/Firebolt9907/ultimate-tag-flutter",
@@ -103,7 +103,7 @@ const projects = [
     technology: "Flutter",
     description: "Multiplayer Game with entirely custom UI for classmates",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/appIcons/ultimatetag.webp?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/appIcons/ultimatetag.webp?raw=true",
   },
   {
     githubUrl: "https://github.com/Firebolt9907/spotify_view",
@@ -112,7 +112,7 @@ const projects = [
     technology: "Flutter",
     description: "App created to turn my phone into a Car Thing with lyrics",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/react-refactor/assets/langIcons/flutter.webp?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/main/assets/langIcons/flutter.webp?raw=true",
   },
   {
     githubUrl: "https://github.com/Firebolt9907/gradeManipulator",
@@ -121,7 +121,7 @@ const projects = [
     technology: "Flutter",
     description: "App created to calculate grades with weighted sections",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/react-refactor/assets/langIcons/flutter.webp?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/raw/refs/heads/main/assets/langIcons/flutter.webp?raw=true",
   },
 ];
 

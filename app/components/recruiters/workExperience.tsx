@@ -12,7 +12,7 @@ const projects = [
     description:
       "E-Commerce website created for a local photographer to sell their photos",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/appIcons/bnollogo.jpeg?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/appIcons/bnollogo.jpeg?raw=true",
   },
   {
     githubUrl: "https://github.com/metallum-ultorum/IntoTheDeep",
@@ -21,7 +21,7 @@ const projects = [
     technology: "Java / FTC SDK",
     description: "Code for Metallum Ultorum Robot using Java OOP",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/langIcons/java.svg?raw=true",
+      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/langIcons/java.svg?raw=true",
   },
 ];
 
