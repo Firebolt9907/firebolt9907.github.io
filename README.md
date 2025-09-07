@@ -14,12 +14,13 @@ This is a React port of my personal website, designed to showcase my projects. I
 ## <code style="color:yellow">// TODO:</code>
 
 - Add scrolling effects to the website to make it feel truly great
-- Responsive design for all devices (I have priorities 🥀)
 
 ## Features
 
 - Portfolio section to highlight my work
 - Contact section for communication
+- Responsive design
+- Added scroll effects on mobile
 
 ## Technologies Used
 
