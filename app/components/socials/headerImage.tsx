@@ -56,7 +56,7 @@ const HeaderImages: React.FC<HeaderImagesProps> = () => {
     >
       <motion.img
         className="centered h-full w-full object-cover"
-        src="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main//assets/myPics/goofypfp.webp?raw=true"
+        src="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/myPics/goofypfp.webp?raw=true"
         alt="Goofy Photo"
       />
     </motion.div>

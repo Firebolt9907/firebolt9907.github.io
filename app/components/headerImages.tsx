@@ -100,7 +100,7 @@ const HeaderImages: FC<HeaderImagesProps> = ({ hovered, setHovered }) => {
       >
         <motion.img
           className="centered h-full w-full object-cover"
-          src="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main//assets/myPics/professionalpfp.webp?raw=true"
+          src="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/myPics/professionalpfp.webp?raw=true"
           alt="My Professional Headshot"
         />
       </motion.div>
@@ -112,7 +112,7 @@ const HeaderImages: FC<HeaderImagesProps> = ({ hovered, setHovered }) => {
       >
         <img
           className="h-full w-full object-cover rounded-full"
-          src="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main//assets/myPics/goofypfp.webp?raw=true"
+          src="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/myPics/goofypfp.webp?raw=true"
           alt="My Social Media Profile Picture"
         />
       </motion.div>
