@@ -1,0 +1,32 @@
+{
+    "configurations": [
+        {
+            "name": "Launch via NPM",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "runtimeArgs": [
+                "run-script",
+                "dev",
+                "--",
+                "--host"
+            ],
+            "runtimeExecutable": "npm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
+        },
+        // {
+        // "type": "node",
+        // "request": "launch",
+        // "name": "Launch React Router App",
+        // "program": "${workspaceFolder}/build/server/index.js",
+        // "preLaunchTask": "build",
+        // "runtimeExecutable": "node",
+        // "env": {
+        //     "NODE_ENV": "development"
+        // },
+        // "args": []
+        // }
+    ]
+}
