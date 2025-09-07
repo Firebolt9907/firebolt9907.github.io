@@ -34,7 +34,7 @@ const SocialSection: React.FC = () => {
           platform="Email"
           platformSrc="https://raw.githubusercontent.com/Firebolt9907/sharmaPhotography/21dfa99a75751c0fb4cc679c6383a883f3a71621/photos/email-logo.svg"
           url="mailto:ifxccjyssfghj@gmail.com"
-          pfpSrc="https://github.com/Firebolt9907/firebolt9907.github.io/blob/react-refactor/assets/myPics/professionalpfp.webp?raw=true"
+          pfpSrc="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main//assets/myPics/professionalpfp.webp?raw=true"
           username="ifxccjyssfghj@gmail.com"
         />
       </div>
