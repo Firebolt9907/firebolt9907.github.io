@@ -4,6 +4,19 @@ import { LayoutGroup } from "framer-motion";
 
 const projects = [
   {
+    githubUrl: "https://github.com/Firebolt9907/boilerFuel",
+    webUrl: "https://jefft72.github.io/UPlate/",
+    androidUrl: "https://groups.google.com/g/hello-world-2025",
+    iosUrl: "https://testflight.apple.com/join/ENwzn4CK",
+    title: "UPlate",
+    year: "2025-Present",
+    technology: "Flutter / SQL",
+    description:
+      "Hackathon app created to help Purdue students filter dining hall menus based on preference",
+    imageSrc:
+      "https://jefft72.github.io/UPlate/assets/plate_light-BjDNvxQU.png",
+  },
+  {
     githubUrl: "https://github.com/Firebolt9907/rangish",
     webUrl: "https://rangish.netlify.app",
     title: "S3 - Stroke & Snap",
@@ -138,6 +151,7 @@ const ProjectsSection: React.FC = () => {
               githubUrl={project.githubUrl}
               webUrl={project.webUrl}
               androidUrl={project.androidUrl}
+              iosUrl={project.iosUrl}
               title={project.title}
               year={project.year}
               technology={project.technology}
