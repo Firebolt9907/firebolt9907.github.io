@@ -128,7 +128,7 @@ const GraphsSection: React.FC = () => {
         }
         if (type === "lang" && item.name === "Java") {
           color = "#F29111";
-          name = "Java (CS 18000)";
+          name = "Java (CS 180)";
         }
         if (type === "lang" && item.name === "Python") color = "#FFC42D";
         if (type === "lang" && item.name === "TypeScript") color = "#3178C6";
