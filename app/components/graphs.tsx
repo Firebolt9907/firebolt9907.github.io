@@ -88,41 +88,73 @@ const GraphsSection: React.FC = () => {
 
   const renderStackedBar = (data: LangData[], type: string) => (
     <div className="bg-gray-700 h-8 rounded-full flex overflow-hidden">
-      {data.map((item) => (
-        <div
-          key={item.name}
-          className="h-full group relative"
-          style={{
-            width: `${item.percent}%`,
-            backgroundColor: item.color || "#888",
-          }}
-        >
-          <div className="absolute bottom-full mb-2 w-max left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">
-            {item.name}: {item.percent.toFixed(1)}%
+      {data.map((item) => {
+        let color = item.color;
+        if (type === "lang" && item.name === "Dart") {
+          color = "#5DC8F8";
+        }
+        if (type === "lang" && item.name === "Java") color = "#F29111";
+        if (type === "lang" && item.name === "Python") color = "#FFC42D";
+        if (type === "lang" && item.name === "TypeScript") color = "#3178C6";
+
+        if (type === "editor" && item.name === "IntelliJ IDEA")
+          color = "#DD1265";
+        if (type === "editor" && item.name === "VS Code") color = "#007ACC";
+        return (
+          <div
+            key={item.name}
+            className="h-full group relative"
+            style={{
+              width: `${item.percent}%`,
+              backgroundColor: color || "#888",
+            }}
+          >
+            <div className="absolute bottom-full mb-2 w-max left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              {item.name}: {item.percent.toFixed(1)}%
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
   const renderLegend = (data: LangData[], type: string) => (
     <div className="mt-4 space-y-2">
       {data.slice(0, 5).map((item) => {
         let name = item.name;
-        if (type === "lang" && item.name === "Dart") name = "Flutter";
+        let color = item.color;
+        if (type === "lang" && item.name === "Dart") {
+          name = "Flutter/Dart";
+          color = "#5DC8F8";
+        }
+        if (type === "lang" && item.name === "Java") {
+          color = "#F29111";
+          name = "Java (CS 18000)";
+        }
+        if (type === "lang" && item.name === "Python") color = "#FFC42D";
+        if (type === "lang" && item.name === "TypeScript") color = "#3178C6";
+        if (type === "lang" && item.name === "R") {
+          name = "R (Data Mine 101)";
+        }
+
         if (type === "os")
           name =
             item.name === "Linux"
               ? "Purdue Server (SSH)"
               : item.name === "Mac"
               ? "Personal MacBook"
-              : "Personal Server (RDP)";
-        if (type === "editor" && item.name === "Neovim") name = "Vim";
+              : "Personal Windows Server (RDP)";
+        if (type === "editor" && item.name === "Neovim") {
+          name = "Vim";
+        }
+        if (type === "editor" && item.name === "IntelliJ IDEA")
+          color = "#DD1265";
+        if (type === "editor" && item.name === "VS Code") color = "#007ACC";
 
         return (
           <div key={item.name} className="flex items-center text-sm">
             <div
               className="w-3 h-3 rounded-full mr-2 flex-shrink-0"
-              style={{ backgroundColor: item.color || "#888" }}
+              style={{ backgroundColor: color || "#888" }}
             />
             <span className="truncate">{name}</span>
             <span className="ml-auto text-gray-400">
