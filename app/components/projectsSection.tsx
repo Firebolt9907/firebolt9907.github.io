@@ -17,6 +17,17 @@ const projects = [
       "https://jefft72.github.io/UPlate/assets/plate_light-BjDNvxQU.png",
   },
   {
+    githubUrl:
+      "https://github.com/Autonomous-Motorsports-Purdue/AMP_ASS_donkeycarv2/commit/cc5be7f5e4994891a83e1abcdc41d54cf0586c09",
+    title: "Autonomous Motorsports @ Purdue",
+    year: "2025-Present",
+    technology: "OpenCV / Python",
+    description:
+      "Implemented unsupervised machine learning into the OpenCV pipeline to visibly reduce noise in lane detection.",
+    imageSrc:
+      "https://images.icon-icons.com/2699/PNG/512/opencv_logo_icon_170887.png",
+  },
+  {
     githubUrl: "https://github.com/Firebolt9907/rangish",
     webUrl: "https://rangish.netlify.app",
     title: "S3 - Stroke & Snap",

@@ -88,8 +88,9 @@ const GraphsSection: React.FC = () => {
 
   const renderStackedBar = (data: LangData[], type: string) => (
     <div className="bg-gray-700 h-8 rounded-full flex overflow-hidden">
-      {data.map((item) => {
+      {data.slice(0, 5).map((item) => {
         let color = item.color;
+        let percent = item.percent;
         if (type === "lang" && item.name === "Dart") {
           color = "#5DC8F8";
         }
@@ -100,17 +101,24 @@ const GraphsSection: React.FC = () => {
         if (type === "editor" && item.name === "IntelliJ IDEA")
           color = "#DD1265";
         if (type === "editor" && item.name === "VS Code") color = "#007ACC";
+        if (item.name === "Other") {
+          let total = 0;
+          data.slice(0, 4).map((i) => {
+            total += i.percent;
+          });
+          percent = 100 - total;
+        }
         return (
           <div
             key={item.name}
             className="h-full group relative"
             style={{
-              width: `${item.percent}%`,
+              width: `${percent}%`,
               backgroundColor: color || "#888",
             }}
           >
             <div className="absolute bottom-full mb-2 w-max left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              {item.name}: {item.percent.toFixed(1)}%
+              {item.name}: {percent.toFixed(1)}%
             </div>
           </div>
         );
@@ -122,6 +130,7 @@ const GraphsSection: React.FC = () => {
       {data.slice(0, 5).map((item) => {
         let name = item.name;
         let color = item.color;
+        let percent = item.percent;
         if (type === "lang" && item.name === "Dart") {
           name = "Flutter/Dart";
           color = "#5DC8F8";
@@ -134,6 +143,13 @@ const GraphsSection: React.FC = () => {
         if (type === "lang" && item.name === "TypeScript") color = "#3178C6";
         if (type === "lang" && item.name === "R") {
           name = "R (Data Mine 101)";
+        }
+        if (item.name === "Other") {
+          let total = 0;
+          data.slice(0, 4).map((i) => {
+            total += i.percent;
+          });
+          percent = 100 - total;
         }
 
         if (type === "os")
@@ -159,8 +175,8 @@ const GraphsSection: React.FC = () => {
             <span className="truncate">{name}</span>
             <span className="ml-auto text-gray-400">
               {type === "lang"
-                ? simplifyTime((item.percent / 100) * totalTime)
-                : `${item.percent.toFixed(1)}%`}
+                ? simplifyTime((percent / 100) * totalTime)
+                : `${percent.toFixed(1)}%`}
             </span>
           </div>
         );
@@ -177,7 +193,7 @@ const GraphsSection: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6">
         <div>
           <h3 className="text-xl font-bold mb-2">Time Spent Coding</h3>
-          <h4 className="text-lg mb-4">Total: {simplifyTime(totalTime)}</h4>
+          <h4 className="text-lg mb-4">Total this week: {simplifyTime(totalTime)}</h4>
           <div className="flex space-x-2 h-48 items-end justify-center">
             {dailyStats.map((day, i) => {
               const date = new Date();
