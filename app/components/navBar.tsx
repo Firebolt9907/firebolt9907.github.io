@@ -64,7 +64,7 @@ const NavBar: React.FC = () => {
       `}</style>
       <img
         className="h-12"
-        src="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/myPics/signature.webp?raw=true"
+        src="https://raw.githubusercontent.com/Firebolt9907/firebolt9907.github.io/main/assets/myPics/signature.webp"
         alt="My Signature"
         onClick={() => {
           window.location.href = "https://rishitsharma.netlify.app/home";

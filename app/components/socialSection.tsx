@@ -14,15 +14,15 @@ const SocialSection: React.FC = () => {
         />
         <SocialTile
           platform="Linkedin"
-          platformSrc="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/langIcons/linkedin.webp?raw=true"
+          platformSrc="https://raw.githubusercontent.com/Firebolt9907/firebolt9907.github.io/refs/heads/main/assets/langIcons/linkedin.webp?raw=true"
           url="https://www.linkedin.com/in/rishit-sharma-2a7904299/"
-          pfpSrc="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/myPics/professionalpfp.webp?raw=true"
+          pfpSrc="https://raw.githubusercontent.com/Firebolt9907/firebolt9907.github.io/refs/heads/main/assets/myPics/professionalpfp.webp?raw=true"
         />
         <SocialTile
           platform="Email"
           platformSrc="https://raw.githubusercontent.com/Firebolt9907/sharmaPhotography/21dfa99a75751c0fb4cc679c6383a883f3a71621/photos/email-logo.svg"
           url="mailto:rishushar99@gmail.com"
-          pfpSrc="https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/myPics/professionalpfp.webp?raw=true"
+          pfpSrc="https://raw.githubusercontent.com/Firebolt9907/firebolt9907.github.io/refs/heads/main/assets/myPics/professionalpfp.webp?raw=true"
           username="rishushar99@gmail.com"
         />
       </div>

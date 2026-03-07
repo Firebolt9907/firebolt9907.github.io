@@ -12,7 +12,7 @@ const projects = [
     description:
       "E-Commerce website created for a local artist to sell merchandise",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/langIcons/react.svg?raw=true",
+      "https://raw.githubusercontent.com/Firebolt9907/firebolt9907.github.io/refs/heads/main/assets/langIcons/react.svg?raw=true",
   },
   {
     githubUrl: "https://github.com/Firebolt9907/weatherML",
@@ -21,7 +21,7 @@ const projects = [
     technology: "Python / Pytorch",
     description: "Pytorch ML model created to predict the weather in Clive, IA",
     imageSrc:
-      "https://github.com/Firebolt9907/firebolt9907.github.io/blob/main/assets/langIcons/pytorch.webp?raw=true",
+      "https://raw.githubusercontent.com/Firebolt9907/firebolt9907.github.io/refs/heads/main/assets/langIcons/pytorch.webp?raw=true",
   },
   {
     githubUrl: "https://github.com/Firebolt9907/praaccc",
