@@ -28,6 +28,6 @@ function useWindowDimensions () {
   return windowDimensions
 }
 
-export default function isMobile () {
+export default function useIsMobile () {
   return useWindowDimensions().width < widthThreshold
 }

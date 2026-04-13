@@ -1,6 +1,6 @@
 import { useState, type FC } from "react";
 import { motion } from "framer-motion";
-import isMobile from "./scripts/isMobile";
+import useIsMobile from "./scripts/isMobile";
 
 interface HeaderImagesProps {
   hovered: boolean;
@@ -8,6 +8,7 @@ interface HeaderImagesProps {
 }
 
 const HeaderImages: FC<HeaderImagesProps> = ({ hovered, setHovered }) => {
+  const mobile = useIsMobile();
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -62,8 +63,8 @@ const HeaderImages: FC<HeaderImagesProps> = ({ hovered, setHovered }) => {
         animate={{
           rotateZ: [360, 0],
           borderRadius: "2vw",
-          height: isMobile() ? "67vw" : "25vw",
-          width: isMobile() ? "50vw" : "17.5vw",
+          height: mobile ? "67vw" : "25vw",
+          width: mobile ? "50vw" : "17.5vw",
           scale: 1.5,
           opacity: 1,
           transition: {
@@ -73,10 +74,10 @@ const HeaderImages: FC<HeaderImagesProps> = ({ hovered, setHovered }) => {
           },
           marginLeft: "-18vw",
           marginRight: "-18vw",
-          marginTop: isMobile() ? "15vw" : "0vw",
+          marginTop: mobile ? "15vw" : "0vw",
         }}
         whileHover={
-          !isMobile()
+          !mobile
             ? {
                 // rotateZ: [0, 360],
                 borderRadius: "22vw",

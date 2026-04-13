@@ -1,10 +1,11 @@
 import { motion } from "motion/react";
 import React from "react";
-import isMobile from "../scripts/isMobile";
+import useIsMobile from "../scripts/isMobile";
 
 interface HeaderImagesProps {}
 
 const HeaderImages: React.FC<HeaderImagesProps> = () => {
+  const mobile = useIsMobile();
   return (
     <motion.div
       initial={{
@@ -22,8 +23,8 @@ const HeaderImages: React.FC<HeaderImagesProps> = () => {
       animate={{
         rotateZ: [360, 0],
         borderRadius: "2vw",
-        height: isMobile() ? "67vw" : "25vw",
-        width: isMobile() ? "50vw" : "17.5vw",
+        height: mobile ? "67vw" : "25vw",
+        width: mobile ? "50vw" : "17.5vw",
         scale: 1.5,
         opacity: 1,
         transition: {
@@ -31,10 +32,10 @@ const HeaderImages: React.FC<HeaderImagesProps> = () => {
           bounce: 0.4,
           duration: 0.6,
         },
-        marginTop: isMobile() ? "15vw" : "0vw",
+        marginTop: mobile ? "15vw" : "0vw",
       }}
       whileHover={
-        !isMobile()
+        !mobile
           ? {
               // rotateZ: [0, 360],
               borderRadius: "22vw",

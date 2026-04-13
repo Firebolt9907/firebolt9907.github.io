@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import React, { useEffect, useRef, useState } from "react";
-import isMobile, { widthThreshold } from "../scripts/isMobile";
+import useIsMobile, { widthThreshold } from "../scripts/isMobile";
 
 interface ShimmerButtonProps {
   content: React.ReactNode;
@@ -25,7 +25,8 @@ export default function ShimmerButton({
   borderless = false,
   description = "",
 }: ShimmerButtonProps) {
-  const angleModifier = 15 * (isMobile() ? 1.5 : 1);
+  const mobile = useIsMobile();
+  const angleModifier = 15 * (mobile ? 1.5 : 1);
   const translateModifier = 12 * (tile ? 1 : 0.5);
   const shadowPositionModifier = -15;
   var parallaxAngleModifier = 0.7;
@@ -171,6 +172,7 @@ export default function ShimmerButton({
           <motion.div
             className="shadow h-full flex flex-col justify-start"
             layoutId={`card-${title}`}
+            layout="position"
             animate={{
               borderRadius: hovered
                 ? hoveredBorderRadius
@@ -249,7 +251,6 @@ export default function ShimmerButton({
       </motion.div>
 
       <motion.p
-        layoutId={`desc-${title}`}
         className="text-center text-sm"
         animate={{
           marginTop: hovered ? "40px" : "10px",
