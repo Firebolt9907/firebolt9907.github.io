@@ -137,13 +137,9 @@ const GraphsSection: React.FC = () => {
         }
         if (type === "lang" && item.name === "Java") {
           color = "#F29111";
-          name = "Java (CS 180)";
         }
         if (type === "lang" && item.name === "Python") color = "#FFC42D";
         if (type === "lang" && item.name === "TypeScript") color = "#3178C6";
-        if (type === "lang" && item.name === "R") {
-          name = "R (Data Mine 101)";
-        }
         if (item.name === "Other") {
           let total = 0;
           data.slice(0, 4).map((i) => {
